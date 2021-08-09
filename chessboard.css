@@ -1,0 +1,32 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chessBoard{
+	width: 638px;
+	height: 634px;
+	border: 5px solid black;
+}
+
+#lightBox{
+    width: 80px;
+    height: 80px;
+    background-color: blanchedalmond;
+    display: inline-block;
+    margin: -2px;
+}
+
+#darkBox{
+    width: 80px;
+    height: 80px;
+    background-color:maroon;
+    display: inline-block;
+    margin: -2px;
+}
