@@ -1,0 +1,12 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+#whiteRook{
+    background-image: url(/assets/whiteRook.png);
+    background-position: center, left top;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
+}
