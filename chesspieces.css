@@ -3,10 +3,12 @@
 	margin: 0;
 }
 
-#whiteRook{
+.whiteRook{
+    position: relative;
     background-image: url(/assets/whiteRook.png);
     background-position: center, left top;
     background-repeat: no-repeat;
-    width: 60px;
-    height: 60px;
+    
+    width: 100%;
+    height: 100%;
 }
