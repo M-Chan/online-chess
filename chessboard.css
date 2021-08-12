@@ -18,7 +18,7 @@
 #lightBox{
     width: 80px;
     height: 80px;
-    background-color: blanchedalmond;
+    background-color: rgb(240, 217, 181);
     display: inline-block;
     margin: -2px;
 }
@@ -26,7 +26,7 @@
 #darkBox{
     width: 80px;
     height: 80px;
-    background-color:maroon;
+    background-color:rgb(181, 136, 99);
     display: inline-block;
     margin: -2px;
 }
