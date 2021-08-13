@@ -23,7 +23,7 @@ html{
     /*Come back to this later (maybe)*/
 }
 
-.row{
+.column{
     width:80vh;
 }
 
@@ -55,9 +55,49 @@ html{
 }
 
 .whiteRook{
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Chess_nlt45.svg/800px-Chess_nlt45.svg.png);
+    background-image: url(/assets/whiteRook.png);
 }
 
 .whiteKnight{
     background-image: url(/assets/whiteKnight.png);
+}
+
+.whiteBishop{
+    background-image: url(/assets/whiteBishop.png);
+}
+
+.whiteQueen{
+    background-image: url(/assets/whiteQueen.png);
+}
+
+.whiteKing{
+    background-image: url(/assets/whiteKing.png);
+}
+
+.whitePawn{
+    background-image: url(/assets/whitePawn.png);
+}
+
+.blackRook{
+    background-image: url(/assets/blackRook.png);
+}
+
+.blackKnight{
+    background-image: url(/assets/blackKnight.png);
+}
+
+.blackBishop{
+    background-image: url(/assets/blackBishop.png);
+}
+
+.blackQueen{
+    background-image: url(/assets/blackQueen.png);
+}
+
+.blackKing{
+    background-image: url(/assets/blackKing.png);
+}
+
+.blackPawn{
+    background-image: url(/assets/blackPawn.png);
 }
