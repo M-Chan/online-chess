@@ -1,0 +1,17 @@
+.box {
+    width: 10vh;
+    height: 10vh;
+}
+
+.box:hover{
+    cursor: pointer;
+    background-color: aquamarine;
+}
+
+.lightBox{
+    background-color: rgb(240, 217, 181);
+}
+
+.darkBox{
+    background-color:rgb(181, 136, 99);
+}
