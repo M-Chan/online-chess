@@ -52,10 +52,7 @@ export default class Pawn {
             }        
         }
 
-        else {
-            continue
-        }
-
+        
     }
 
     move() { //this method also incorporates capture

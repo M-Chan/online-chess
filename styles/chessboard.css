@@ -19,12 +19,7 @@ html{
     align-items: center;
 	width: 80vh;
 	height: 80vh;
-    /* border: 5px solid rgb(112, 96, 55); */
-    /*Come back to this later (maybe)*/
-}
-
-.column{
-    width:80vh;
+    
 }
 
 .lightBox{
@@ -44,4 +39,9 @@ html{
     height: 10vh;
     background-color:rgb(181, 136, 99);
     display: block;
+}
+
+.activeSquare{
+    cursor: pointer;
+    background-color: rgb(44, 231, 20);
 }

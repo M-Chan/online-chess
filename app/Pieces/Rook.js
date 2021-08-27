@@ -1,4 +1,4 @@
-import Pawn from "./Pawn";
+import Pawn from "./Pawn.js";
 
 export default class Rook extends Pawn {
     
