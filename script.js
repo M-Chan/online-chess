@@ -11,3 +11,11 @@ function makeActive() {
 
 }
 
+// this.board = [  [null, null, null, null, null, null, null, null],
+//                 [null, null, null, null, null, null, null, null],
+//                 [null, null, null, null, null, null, null, null],
+//                 [null, null, null, null, null, null, null, null],
+//                 [null, null, null, null, null, null, null, null],
+//                 [null, null, null, null, null, null, null, null],
+//                 [null, null, null, null, null, null, null, null],
+//                 [null, null, null, null, null, null, null, null] ]

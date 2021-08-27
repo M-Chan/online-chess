@@ -8,16 +8,16 @@ import { King } from "./Pieces/King";
 
 export default class ChessBoard {
     
-    numMoves = 0;
-    files = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    activeSquare = null; //this will be the square object that a user has clicked on
+    numMoves = 0
+    activeSquare = null //this will be the square object that a user has clicked on
 
     constructor() {
 
         //making the actual chessboard array
         this.board = [...Array(8)].map((x, j) => {
             return Array(8).fill(null).map((y, i) => {
-                return new Square(`${String.fromCharCode(65 + i)}${8 - j}`) //initialising all the square objects with their identifiers
+                //return new Square(`${String.fromCharCode(65 + i)}${8 - j}`) //initialising all the square objects with their identifiers
+                return (`${String.fromCharCode(65 + i)}${8 - j}`)
             })
         })
 
