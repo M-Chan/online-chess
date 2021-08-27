@@ -32,7 +32,4 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
         }
     }
 
-   
-    
-    
 })})
