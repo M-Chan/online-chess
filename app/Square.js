@@ -1,6 +1,5 @@
 export default class Square {
 
-    active = false
     threatened = false
     piece = null
 
@@ -14,14 +13,6 @@ export default class Square {
 
     removePiece(){
         this.piece = null
-    }
-
-    setActive() {
-        this.active = true
-    }
-
-    setUnActive(){
-        this.active = false
     }
 
     threaten() {

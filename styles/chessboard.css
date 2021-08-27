@@ -31,7 +31,7 @@ html{
 
 .box:hover{
     cursor: pointer;
-    background-color: aquamarine;
+    background-color: rgb(0, 244, 252);
 }
 
 .darkBox{
@@ -45,3 +45,4 @@ html{
     cursor: pointer;
     background-color: rgb(44, 231, 20);
 }
+
