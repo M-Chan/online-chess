@@ -8,12 +8,11 @@ let currentPiece;
 let totalMoves = 0;
 let pieceColour;
 
-var piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whiteKing", "blackKing", "whiteQueen", "blackQueen", 
-                     "whiteBishop", "blackBishop","whiteKnight", "blackKnight" ]
-                    
-/*
-while game not concluded, alternate between white and black
-*/
+let i = 0
+
+var whitePiecesClass =   ["whitePawn", "whiteRook", "whiteKing", "whiteQueen", "whiteBishop", "whiteKnight" ]
+
+var blackPiecesClass =   ["blackPawn", "blackRook", "blackKing", "blackQueen", "blackBishop", "blackKnight" ]
 
 document.querySelectorAll('.piece').forEach(item => {item.addEventListener('click', () => {
     
@@ -39,18 +38,20 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
     }
     
     function findCurrentPiece() { //sets the current piece to the piece on the selected square
-        if (item.classList.contains("whitePawn")) {currentPiece = "whitePawn"; pieceColour = "white";}
-        else if (item.classList.contains("whiteRook")) {currentPiece = "whiteRook"; pieceColour = "white";}
-        else if (item.classList.contains("whiteKnight")) {currentPiece = "whiteKnight"; pieceColour = "white";}
-        else if (item.classList.contains("whiteBishop")) {currentPiece = "whiteBishop"; pieceColour = "white";}
-        else if (item.classList.contains("whiteQueen")) {currentPiece = "whiteQueen"; pieceColour = "white";}
-        else if (item.classList.contains("whiteKing")) {currentPiece = "whiteKing"; pieceColour = "white";}
-        else if (item.classList.contains("blackPawn")) {currentPiece = "blackPawn"; pieceColour = "black";}
-        else if (item.classList.contains("blackRook")) {currentPiece = "blackRook"; pieceColour = "black";}
-        else if (item.classList.contains("blackKnight")) {currentPiece = "blackKnight"; pieceColour = "black";}
-        else if (item.classList.contains("blackBishop")) {currentPiece = "blackBishop"; pieceColour = "black";}
-        else if (item.classList.contains("blackQueen")) {currentPiece = "blackQueen"; pieceColour = "black";}
-        else {currentPiece = "blackKing"; pieceColour = "black";}
+        i = 0;
+        while (i<=6) {
+            if (item.classList.contains(whitePiecesClass[i])) {
+                currentPiece = whitePiecesClass[i];
+                pieceColour = "white";
+                break;
+            }
+            else if (item.classList.contains(blackPiecesClass[i])) {
+                currentPiece = blackPiecesClass[i];
+                pieceColour = "black"; 
+                break;
+            }
+            else i++;
+        }
     }
 
     function makeActive() { //selects the current square and allows its piece to move to an empty quare
@@ -71,13 +72,13 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
                 console.log(totalMoves);
                 pieceColour = null;
 
-                if (totalMoves%2 === 0) {
+                if (totalMoves%2 === 0) { //show that it is white's turn
                     document.getElementById("black").classList.remove("turnText--visible");
                     document.getElementById("black").classList.add("turnText--hidden");
                     document.getElementById("white").classList.remove("turnText--hidden");
                     document.getElementById("white").classList.add("turnText--visible");
                 }
-                else {
+                else { //show that it is black's turn
                     document.getElementById("white").classList.remove("turnText--visible");
                     document.getElementById("white").classList.add("turnText--hidden");
                     document.getElementById("black").classList.remove("turnText--hidden");
