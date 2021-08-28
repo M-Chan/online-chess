@@ -52,6 +52,9 @@ export default class Pawn {
         
     }
 
+    getColour(){
+        return this.colour;
+    }
 
     updateLocation(oI, iI){
         this.oI = oI;
@@ -142,7 +145,7 @@ export default class Pawn {
         this.possibleCaptures()
         //console.log("sent the array to chess.js")
         return this.aML
-        
+
     }
 
 

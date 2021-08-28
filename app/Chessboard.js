@@ -9,14 +9,13 @@ import { King } from "./Pieces/King.js";
 export default class ChessBoard {
     
     numMoves = 0
-    activeSquare = null //this will be the square object that a user has clicked on
+    
 
     constructor() {
 
         //making the actual chessboard array
         this.board = [...Array(8)].map((x, j) => {
             return Array(8).fill(null).map((y, i) => {
-                //return new Square(`${String.fromCharCode(65 + i)}${8 - j}`) 
                 return new Square(`${j}${i}`) //initialising all the square objects with their identifiers - these match with the ids of the divs
             })
         })
@@ -69,6 +68,11 @@ export default class ChessBoard {
     getBoard() {
         return this.board;
     }
+
+    getPiece(id) {
+        return this.board[id.charAt(0)][id.charAt(1)].getPiece()
+    }
+
 
     moveWhite() {
 
