@@ -11,8 +11,18 @@ export default class Square {
         this.piece = piece
     }
 
+    setPiece(piece) {
+        this.piece = piece
+    }
+
     removePiece(){
+        let x = this.piece
         this.piece = null
+        return x
+    }
+
+    getPiece() {
+        return this.piece
     }
 
     threaten() {

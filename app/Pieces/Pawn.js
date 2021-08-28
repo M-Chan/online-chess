@@ -1,6 +1,6 @@
 export default class Pawn {
 
-    constructor(Xcoord,Ycoord, colour) {
+    constructor(Xcoord,Ycoord, colour, board) {
         this.Xcoord = Xcoord;
         this.Ycoord = Ycoord;
         this.colour = colour;
@@ -8,6 +8,7 @@ export default class Pawn {
         this.description = `${colour} pawn`;
         this.availableMoves = 2;
         this.active = false;
+        this.board = board
     }
 
     canMoveTo() {

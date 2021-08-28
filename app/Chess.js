@@ -12,20 +12,20 @@ var piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whiteK
 while game not concluded, alternate between white and black
 */
 
-
 document.querySelectorAll('.piece').forEach(item => {item.addEventListener('click', () => {
     //whatever is here is executed whenever a square is clicked
     
-    /*console.log(chessBoard.board[item.id.charAt(1)][item.id.charCodeAt(0) - 97]) */ // --> converting ID to board[][] indicies
-    
+    //selecting the active square
     if (!item.classList.contains("empty")) { //not empty then make it active square
         if (activeSquare !== undefined){
             activeSquare.classList.remove("activeSquare")
         }
         activeSquare = item
         activeSquare.classList.add("activeSquare")
+        
     }
 
+    // making the move
     else if (item.classList.contains("empty") && activeSquare !== undefined){ //if empty and active square is defined
         item.classList.remove("empty")
         chessPiece = ($(activeSquare).attr("class").split(/\s+/)).filter(value => piecesClass.includes(value))
@@ -34,14 +34,12 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
         activeSquare.classList.add("empty")
         item.classList.add(chessPiece)
         
-
-        //now we need to update the 2D array so that whatever the user has done is reflected in the data structure
-        chessBoard.board[activeSquare.id.charAt(1)][activeSquare.id.charCodeAt(0) - 97].removePiece()
-        chessBoard.board[item.id.charAt(1)][item.id.charCodeAt(0) - 97].addPiece()
-
-
-
+        //this method updates the 2D array so that whatever the user has done is reflected in the data structure
+        chessBoard.movePiece(   Number(activeSquare.id.charAt(0)), Number(activeSquare.id.charAt(1)), 
+                                Number(item.id.charAt(0)), Number(item.id.charAt(1))
+                            )
         activeSquare = undefined
+
     }
 
 })})
