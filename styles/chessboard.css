@@ -45,3 +45,26 @@ html{
     cursor: pointer;
     background-color: rgb(44, 231, 20);
 }
+
+.turn{
+    position: absolute;
+    height: 20vh;
+    width: auto;
+    transform: translateY(-50%);
+    top: 40%;
+    transform: translateX(-50%);
+    left: 15%;
+}
+
+.turnText{
+    font-size: 10vh;
+    text-align: center;
+}
+
+.turnText--visible{
+    display: block;
+}
+
+.turnText--hidden{
+    display: none;
+}
