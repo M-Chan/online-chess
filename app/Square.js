@@ -14,6 +14,10 @@ export default class Square {
     setPiece(piece) {
         this.piece = piece
     }
+    
+    isEmpty() {
+        return (this.piece === null)
+    }
 
     removePiece(){
         let x = this.piece
@@ -23,6 +27,22 @@ export default class Square {
 
     getPiece() {
         return this.piece
+    }
+
+    containsBlack(){
+        try {
+            return (this.piece.colour === "black")
+        } catch (error) {
+            return false;
+        }
+    }
+
+    containsWhite(){
+        try {
+            return (this.piece.colour === "white")
+        } catch (error) {
+            return false;
+        }
     }
 
     threaten() {

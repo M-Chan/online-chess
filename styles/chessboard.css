@@ -46,3 +46,10 @@ html{
     background-color: rgb(44, 231, 20);
 }
 
+.availableSquares {
+    background: rgb(44, 231, 20);
+    border-radius: 50%;
+    /* width: 2000px;
+    height: 2px; */
+
+}
