@@ -9,7 +9,7 @@ import { King } from "./Pieces/King.js";
 export default class ChessBoard {
     
     numMoves = 0
-    
+    turn = "white"
 
     constructor() {
 

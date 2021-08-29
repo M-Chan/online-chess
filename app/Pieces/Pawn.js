@@ -10,8 +10,6 @@ export default class Pawn {
         this.chessBoard = chessBoard  //pass in the chessBoard object
         this.aML = []  //aML = availableMoveLocations
         
-        //this.availableMoves = 2;
-        //this.active = false;
     }
 
     upgrade() {

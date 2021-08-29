@@ -25,7 +25,7 @@ function removeAvailableSquares() {
             //document.getElementById(`${element[0]}${element[1]}`).classList.add("availableSquares")
         //}
         
-        document.getElementById(`${element[0]}${element[1]}`).classList.remove("availableSquares", "pieceInDanger")
+        document.getElementById(`${element[0]}${element[1]}`).classList.remove("availableSquares")
     })
 }
 

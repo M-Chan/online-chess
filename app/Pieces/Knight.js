@@ -1,3 +1,4 @@
+//import Pawn from "./Pawn.js"
 export default class Knight {
     
     constructor(Xcoord,Ycoord, colour) {
