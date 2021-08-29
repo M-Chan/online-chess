@@ -6,8 +6,8 @@ let activeSquare;
 let chessPiece;
 let chessPiece2;
 let pieceObj;
-
 let availableMoveLocations;
+let HTMLElement;
 
 var piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whiteKing", "blackKing", "whiteQueen", "blackQueen", 
                      "whiteBishop", "blackBishop","whiteKnight", "blackKnight" ]
@@ -18,14 +18,7 @@ while game not concluded, alternate between white and black
 
 function removeAvailableSquares() {
     availableMoveLocations.forEach(element => {
-        // if (!(document.getElementById(`${element[0]}${element[1]}`).classList.contains("empty"))){
-        //     document.getElementById(`${element[0]}${element[1]}`).classList.remove("pieceInDanger")
-        // }
-        // else {
-            //document.getElementById(`${element[0]}${element[1]}`).classList.add("availableSquares")
-        //}
-        
-        document.getElementById(`${element[0]}${element[1]}`).classList.remove("availableSquares")
+        document.getElementById(`${element[0]}${element[1]}`).classList.remove("availableSquares", "pieceInDanger")
     })
 
 }
@@ -84,7 +77,6 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
             removeAvailableSquares()
         }
 
-
     }
 
     //selecting the active square
@@ -101,14 +93,13 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
 
         //marking all these locations on the chessboard with the "availableSquares class so they are marked with a green circle in them"
         availableMoveLocations.forEach(element => {
-            // if (!(document.getElementById(`${element[0]}${element[1]}`).classList.contains("empty"))){ //if not empty then apply a different class
-            //     document.getElementById(`${element[0]}${element[1]}`).classList.add("pieceInDanger")
-            // }
-            // else {
-            //     document.getElementById(`${element[0]}${element[1]}`).classList.add("availableSquares")
-            // }
-
-            document.getElementById(`${element[0]}${element[1]}`).classList.add("availableSquares")
+            HTMLElement = document.getElementById(`${element[0]}${element[1]}`)
+            if (!HTMLElement.classList.contains("empty")){
+                HTMLElement.classList.add("pieceInDanger")
+            }
+            
+            HTMLElement.classList.add("availableSquares")
+            
         })
     }
 

@@ -1,0 +1,18 @@
+1) Pawn capturing: en passant is not present
+
+2) Pawn queening when it reaches the end of the board
+
+**3 and 3.5 are caused by the same error
+--------------------------------------------------------------------------------------------
+3) Pieces to be captured shrink into the circle - need to fix this bug
+
+3.5) You can only click on the circle to move the piece - should be anywhere inside the square
+--------------------------------------------------------------------------------------------
+
+4) Castle method for the king needs to be completed
+
+5) Right now the king can just move anywhere, further refinement needed here
+
+6) Can't move a piece if it exposed the king to a check (pinned pieces)
+
+7) The game needs to be played in turns 
