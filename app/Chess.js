@@ -27,6 +27,7 @@ function removeAvailableSquares() {
         
         document.getElementById(`${element[0]}${element[1]}`).classList.remove("availableSquares")
     })
+
 }
 
 function updateChessPiece(item) {
@@ -64,17 +65,25 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
     }
 
     // making the move - //if empty and active square is defined - can only move to a valid square
-    else if (item.classList.contains("empty") && activeSquare !== undefined && item.classList.contains("availableSquares")){ 
+    else if (item.classList.contains("empty") && activeSquare !== undefined){ 
 
-        chessPiece = ($(activeSquare).attr("class").split(/\s+/)).filter(value => piecesClass.includes(value))
-        item.classList.remove("empty")
-        activeSquare.classList.remove(chessPiece)
-        activeSquare.classList.remove("activeSquare")
-        activeSquare.classList.add("empty")
-        item.classList.add(chessPiece)
+        if (item.classList.contains("availableSquares")){
+            chessPiece = ($(activeSquare).attr("class").split(/\s+/)).filter(value => piecesClass.includes(value))
+            item.classList.remove("empty")
+            activeSquare.classList.remove(chessPiece)
+            activeSquare.classList.remove("activeSquare")
+            activeSquare.classList.add("empty")
+            item.classList.add(chessPiece)
+    
+            removeAvailableSquares()
+            updateChessPiece(item)
+        }
 
-        removeAvailableSquares()
-        updateChessPiece(item)
+        else {
+            activeSquare.classList.remove("activeSquare")
+            removeAvailableSquares()
+        }
+
 
     }
 
@@ -88,14 +97,8 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
         activeSquare.classList.add("activeSquare")
         
         //getting all the locations that the this piece is able to move to
-        //console.log(activeSquare.id)
-        //console.log(chessBoard.getBoard())
-
-        //console.log(chessBoard.getPiece(activeSquare.id))
         availableMoveLocations = chessBoard.getPiece(activeSquare.id).move()
 
-        //console.log(availableMoveLocations)
-        
         //marking all these locations on the chessboard with the "availableSquares class so they are marked with a green circle in them"
         availableMoveLocations.forEach(element => {
             // if (!(document.getElementById(`${element[0]}${element[1]}`).classList.contains("empty"))){ //if not empty then apply a different class
