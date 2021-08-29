@@ -34,6 +34,46 @@ function updateChessPiece(item) {
     activeSquare = undefined
 }
 
+// IF THE PIECE IS A PAWN AND IT HAS MADE OVER 5 MOVES THEN CHECK IT HAS REACHED THE EDGE OF THE BOARD AND CALL THE UPGRADE METHOD
+function checkPawnUpgrade(item, chessObj) {
+
+    console.log("hi")
+    //     let piece = chessBoard.getPiece(activeSquare.id)
+//     let description
+//     //reached the end of board
+//     if ((piece.description === "white pawn") && (piece.oI === 0) || (piece.description === "black pawn") && (piece.oI === 7)){ 
+        
+//         switch(piece.upgrade()) {
+//             case k:
+//                 chessBoard.makeNewKnight(piece.oI, piece.iI, piece.colour)         
+//                 description = `${piece.getColour()}Knight`
+//                 break;
+//             case b:
+//                 chessBoard.makeNewBishop(piece.oI, piece.iI, piece.colour)
+//                 description = `${piece.getColour()}Bishop`
+//                 break;
+//             case r:
+//                 chessBoard.makeNewRook(piece.oI, piece.iI, piece.colour)
+//                 description = `${piece.getColour()}Rook`
+//                 break;
+//             case q:
+//                 chessBoard.makeNewQueen(piece.oI, piece.iI, piece.colour)
+//                 description = `${piece.getColour()}Queen`
+//                 break;
+//             default:
+//                 piece.upgrade()
+//         }
+//         //now we need to actually reflect this change in the 2D array on the actual chessboard
+
+//         item.classList.remove(chessObj)
+//         item.classList.add(description)
+
+//     }
+
+//     else return //if the piece is not a pawn then we don't want to do anything
+
+}
+
 
 document.querySelectorAll('.piece').forEach(item => {item.addEventListener('click', () => {
     //whatever is here is executed whenever a square is clicked
@@ -54,6 +94,10 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
 
             removeAvailableSquares()
             updateChessPiece(item)
+            
+            //check if the piece is a pawn and if it is eligible to be upgraded
+            checkPawnUpgrade(item, chessPiece2)
+
         }
     }
 
@@ -70,6 +114,9 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
     
             removeAvailableSquares()
             updateChessPiece(item)
+
+            //check if the piece is a pawn and if it is eligible to be upgraded
+            checkPawnUpgrade(item, chessPiece)
         }
 
         else {

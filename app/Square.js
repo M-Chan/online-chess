@@ -1,6 +1,7 @@
 export default class Square {
 
-    threatened = false
+    threatenedByWhite = false
+    threatenedByBlack = false
     piece = null
 
     constructor(identifier){
@@ -62,45 +63,29 @@ export default class Square {
         else return this.piece.colour
     }
 
-    threaten() {
-        this.threatened = true
+    threaten(colour) {
+        if (colour === "white"){
+            this.threatenedByWhite = true
+        }
+
+        else if (colour === "black") {
+            this.threatenedByBlack = true
+        }
+
+        else return
+        
     }
 
-    unthreaten() {
-        this.threatened = false
+    unthreaten(colour) {
+        if (colour === "white"){
+            this.threatenedByWhite = false
+        }
+
+        else if (colour === "black") {
+            this.threatenedByBlack = false
+        }
+
+        else return
     }
 
 }
-
-
-// if (activeSquare.classList.contains("whitePawn") || activeSquare.classList.contains("whitePawn")){
-//     //calling the move method for the pawn object
-
-
-// }
-
-
-// else if (activeSquare.classList.contains("whiteKing") || activeSquare.classList.contains("whiteKing")){
-//     //call the move method for the king object
-// }
-
-
-
-// else if (activeSquare.classList.contains("whiteQueen") || activeSquare.classList.contains("whiteQueen")){
-//     //call the move method for the queen object
-// }
-
-
-// else if (activeSquare.classList.contains("whiteRook") || activeSquare.classList.contains("whiteRook")){
-//     //call the move method for the rook object
-// }
-
-
-// else if (activeSquare.classList.contains("whiteKnight") || activeSquare.classList.contains("whiteKnight")){
-//     //call the move method for the knight object
-// }
-
-
-// else if (activeSquare.classList.contains("whiteBishop") || activeSquare.classList.contains("whiteBishop")){
-//     //call the move method for the bishop object
-// }

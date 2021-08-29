@@ -73,13 +73,20 @@ export default class ChessBoard {
         return this.board[id.charAt(0)][id.charAt(1)].getPiece()
     }
 
-
-    moveWhite() {
-
+    makeNewQueen(oI, iI, colour){
+        this.board[oI][iI].setPiece(new Queen(oI, iI, colour, this.board))
     }
 
-    moveBlack() {
+    makeNewKnight(oI, iI, colour){
+        this.board[oI][iI].setPiece(new Knight(oI, iI, colour, this.board))
+    }
 
+    makeNewBishop(oI, iI, colour){
+        this.board[oI][iI].setPiece(new Bishop(oI, iI, colour, this.board))
+    }
+
+    makeNewRook(oI, iI, colour){
+        this.board[oI][iI].setPiece(new Rook(oI, iI, colour, this.board))
     }
 
     playMove() {
@@ -95,10 +102,6 @@ export default class ChessBoard {
     }
 
     isStaleMate() {
-
-    }
-
-    resign(){
 
     }
 

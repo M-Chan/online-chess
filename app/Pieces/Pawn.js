@@ -1,4 +1,4 @@
-//NEED TO INCLUDE: en passant & upgrading when pawn reaches the end of the board
+//NEED TO INCLUDE: en passant
 
 export default class Pawn {
 
@@ -15,42 +15,8 @@ export default class Pawn {
         
     }
 
-    #upgrade() {
-
-        if (this.colour === "black" && this.oI === 7) {
-            let newPiece = prompt("Which piece would you like to upgrade to, enter 'k' 'b' 'r' or 'q'?", "q").toLowerCase();
-                //upgrade this to a new piece
-                //remove this piece array[y][x] = null
-                //make new knight/bishop/rook/queen at this location
-                
-                switch(newPiece) {
-                    case k:
-                        this.chessBoard
-                        break;
-                    case b:
-                        //bishop
-                        break;
-                    case r:
-                        //rook
-                        break;
-                    case q:
-                        //queen
-                        break;
-                    default:
-                        this.upgrade()
-                }
-
-            }
-        
-
-
-        // else if (this.colour === 'white') { 
-        //     if (this.Xcoord === 0) {
-        //         //upgrade this to a new piece
-        //     }        
-        // }
-
-        
+    upgrade() {
+        return prompt("Which piece would you like to upgrade to, enter 'k' 'b' 'r' or 'q'?", "q").charAt(0).toLowerCase();
     }
 
     getColour(){
@@ -69,15 +35,6 @@ export default class Pawn {
     getDescription(){
         return this.description;
     }
-
-    // [ [00, 01, 02, 03, 04, 05, 06, 07],      top-left is [0][0] = A8, bottom right is[7][7] = H1
-    //   [10, 11, 12, 13, 14, 15, 16, 17],      black side
-    //   [20, 21, 22, 23, 24, 25, 26, 27],
-    //   [30, 31, 32, 33, 34, 35, 36, 37],
-    //   [40, 41, 42, 43, 44, 45, 46, 47],
-    //   [50, 51, 52, 53, 54, 55, 56, 57],
-    //   [60, 61, 62, 63, 64, 65, 66, 67],      white side
-    //   [70, 71, 72, 73, 74, 75, 76, 77]  ]
 
     possibleCaptures() {
 
@@ -165,20 +122,15 @@ export default class Pawn {
 
     }
 
-
     firstMove(){
         if (this.colour === "white"){
             if (this.chessBoard[this.oI-1][this.iI].isEmpty()){      //one square ahead
                 this.aML.push([this.oI-1,this.iI])
                 
-                
                 if ((this.chessBoard[this.oI-2][this.iI]).isEmpty()) { //two squares ahead
                     this.aML.push([this.oI-2,this.iI])
-                    //console.log("two moves")
                 }
-
             }
-            
         }
 
         else { //when it's a black pawn
@@ -198,31 +150,26 @@ export default class Pawn {
 
     }
 
-
-    
-
     move() { //this method also incorporates capture
 
         this.aML = []
     
         if (this.moves === 0){
-            //console.log("first move")
             return this.firstMove()
         }
 
         else { // second move onwards
             this.possibleCaptures();
 
-            if (this.colour === "white") {
-                if ((this.chessBoard[this.oI-1][this.iI]).isEmpty()){ //one square ahead
+            try {
+                if (this.colour === "white" && this.chessBoard[this.oI-1][this.iI].isEmpty()) { //one square ahead
                     this.aML.push([this.oI-1,this.iI])
                 }
-            }
-            
-            else { //if the chess piece is black
-                if ((this.chessBoard[this.oI+1][this.iI]).isEmpty()){ //one square ahead
+                else if ((this.chessBoard[this.oI+1][this.iI]).isEmpty()) { //if the chess piece is black  //one square ahead
                     this.aML.push([this.oI+1,this.iI])
-                }
+                }    
+            } catch (error) {
+                
             }
 
             return this.aML;
