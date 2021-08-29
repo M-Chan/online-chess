@@ -82,14 +82,19 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
     else if (!item.classList.contains("empty")) { //not empty then make it active square
         if (activeSquare !== undefined){
             activeSquare.classList.remove("activeSquare")
-            
             removeAvailableSquares()
         }
         activeSquare = item
         activeSquare.classList.add("activeSquare")
         
         //getting all the locations that the this piece is able to move to
+        //console.log(activeSquare.id)
+        //console.log(chessBoard.getBoard())
+
+        //console.log(chessBoard.getPiece(activeSquare.id))
         availableMoveLocations = chessBoard.getPiece(activeSquare.id).move()
+
+        //console.log(availableMoveLocations)
         
         //marking all these locations on the chessboard with the "availableSquares class so they are marked with a green circle in them"
         availableMoveLocations.forEach(element => {

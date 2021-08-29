@@ -2,6 +2,8 @@
 
 export default class Pawn {
 
+    #description
+
     constructor(oI,iI, colour, chessBoard) {
         this.oI = oI; //outer index
         this.iI = iI; //inner index
@@ -9,10 +11,11 @@ export default class Pawn {
         this.moves = 0;  //number of moves that a piece has done
         this.chessBoard = chessBoard  //pass in the chessBoard object
         this.aML = []  //aML = availableMoveLocations
+        this.description = `${colour} pawn`
         
     }
 
-    upgrade() {
+    #upgrade() {
 
         if (this.colour === "black" && this.oI === 7) {
             let newPiece = prompt("Which piece would you like to upgrade to, enter 'k' 'b' 'r' or 'q'?", "q").toLowerCase();
@@ -63,6 +66,10 @@ export default class Pawn {
         this.moves++;
     }
 
+    getDescription(){
+        return this.description;
+    }
+
     // [ [00, 01, 02, 03, 04, 05, 06, 07],      top-left is [0][0] = A8, bottom right is[7][7] = H1
     //   [10, 11, 12, 13, 14, 15, 16, 17],      black side
     //   [20, 21, 22, 23, 24, 25, 26, 27],
@@ -84,13 +91,36 @@ export default class Pawn {
             }
 
             try {
-                if((this.chessBoard[this.oI-1][this.iI+1]).containsBlack()) { //"capturable" position (top right)
+                if ((this.chessBoard[this.oI-1][this.iI+1]).containsBlack()) { //"capturable" position (top right)
                     this.aML.push([this.oI-1,this.iI+1])
                 }
             } catch (error) {
                 
             }
 
+            //en passant capture
+
+            // try {
+            //     let piece = this.chessBoard[this.oI][this.iI-1].getPiece()
+            //     if ((piece.getDescription() === "black pawn") && (piece.getMoves() === 1)){
+            //         this.aML.push([this.oI,this.iI-1])
+            //     }
+
+            //     console.log("hello")
+            // } catch (error) {
+                
+            // }
+
+            // //en passant capture
+            // try {
+            //     let piece = this.chessBoard[this.oI][this.iI+1].getPiece()
+            //     if ((piece.getDescription() === "black pawn") && (piece.getMoves() === 1)){
+            //         this.aML.push([this.oI,this.iI+1])
+            //     }
+            //     console.log("hello")
+            // } catch (error) {
+                
+            // }
         }
 
         else {
@@ -109,6 +139,28 @@ export default class Pawn {
             } catch (error) {
                 
             }
+
+            //en passant capture
+            // try {
+            //     let piece = this.chessBoard[this.oI][this.iI-1].getPiece()
+            //     if ((piece.getDescription() === "white pawn") && (piece.getMoves() === 1)){
+            //         this.aML.push([this.oI,this.iI-1])
+            //     }
+            //     console.log("hello")
+            // } catch (error) {
+                
+            // }
+
+            // //en passant capture
+            // try {
+            //     let piece = this.chessBoard[this.oI][this.iI+1].getPiece()
+            //     if ((piece.getDescription() === "white pawn") && (piece.getMoves() === 1)){
+            //         this.aML.push([this.oI,this.iI+1])
+            //     }
+            //     console.log("hello")
+            // } catch (error) {
+                
+            // }
         }
 
     }
@@ -126,6 +178,7 @@ export default class Pawn {
                 }
 
             }
+            
         }
 
         else { //when it's a black pawn
@@ -137,11 +190,10 @@ export default class Pawn {
                     this.aML.push([this.oI+2,this.iI])
                 }
             }
+
         }
 
-        //console.log(this.aML)
         this.possibleCaptures()
-        //console.log("sent the array to chess.js")
         return this.aML
 
     }
@@ -151,7 +203,6 @@ export default class Pawn {
 
     move() { //this method also incorporates capture
 
-        //console.log(`${this.oI}${this.iI}`)
         this.aML = []
     
         if (this.moves === 0){

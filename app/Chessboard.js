@@ -34,27 +34,27 @@ export default class ChessBoard {
             this.board[6][i].addPiece(new Pawn(6, i, "white", this.board)) 
             
             if (i==0 || i==7) { //make new rooks
-                this.board[0][i].addPiece(new Rook(i, 0, "black", this.board)) 
-                this.board[7][i].addPiece(new Rook(i, 0, "white", this.board)) 
+                this.board[0][i].addPiece(new Rook(0, i, "black", this.board)) 
+                this.board[7][i].addPiece(new Rook(7, i, "white", this.board)) 
             }
             else if (i==1 || i==6) { //make new knights
-                this.board[0][i].addPiece(new Knight(i, 0, "black", this.board))
-                this.board[7][i].addPiece(new Knight(i, 0, "white", this.board))
+                this.board[0][i].addPiece(new Knight(0, i, "black", this.board))
+                this.board[7][i].addPiece(new Knight(7, i, "white", this.board))
             }
 
             else if (i==2 || i==5) { //make new bishops
-                this.board[0][i].addPiece(new Bishop(i, 0, "black", this.board))
-                this.board[7][i].addPiece(new Bishop(i, 0, "white", this.board))
+                this.board[0][i].addPiece(new Bishop(0, i, "black", this.board))
+                this.board[7][i].addPiece(new Bishop(7, i, "white", this.board))
             }
 
             else if (i==3) { //make a new Queen 
-                this.board[0][i].addPiece(new Queen(i, 0, "black", this.board))
-                this.board[7][i].addPiece(new Queen(i, 0, "white", this.board))
+                this.board[0][i].addPiece(new Queen(0, i, "black", this.board))
+                this.board[7][i].addPiece(new Queen(7, i, "white", this.board))
             }
 
             else { //make a new King here
-                this.board[0][i].addPiece(new King(i, 0, "black", this.board)) 
-                this.board[7][i].addPiece(new King(i, 0, "white", this.board)) 
+                this.board[0][i].addPiece(new King(0, i, "black", this.board)) 
+                this.board[7][i].addPiece(new King(7, i, "white", this.board)) 
             }
         }
 

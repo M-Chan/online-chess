@@ -45,6 +45,23 @@ export default class Square {
         }
     }
 
+    containsOppositeColour(colour) {
+        try {
+            return (this.piece.colour !== colour)
+        } catch (error) {
+            return true
+        }
+        
+    }
+
+    whichColourPiece(){
+        if (this.piece == null){
+            return "empty"
+        }
+
+        else return this.piece.colour
+    }
+
     threaten() {
         this.threatened = true
     }
@@ -54,8 +71,6 @@ export default class Square {
     }
 
 }
-
-
 
 
 // if (activeSquare.classList.contains("whitePawn") || activeSquare.classList.contains("whitePawn")){
