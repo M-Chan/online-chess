@@ -16,49 +16,54 @@ export default class ChessBoard {
         //making the actual chessboard array
         this.board = [...Array(8)].map((x, j) => {
             return Array(8).fill(null).map((y, i) => {
-                return new Square(`${String.fromCharCode(65 + i)}${8 - j}`) //initialising all the square objects with their identifiers
+                //return new Square(`${String.fromCharCode(65 + i)}${8 - j}`) 
+                return new Square(`${j}${i}`) //initialising all the square objects with their identifiers - these match with the ids of the divs
             })
         })
 
         
-        // [ [A8, B8, C8, D8, E8, F8, G8, H8],      top-left is [0][0] = A8
-        //   [A7, B7, C7, D7, E7, F7, G7, H7],      black side
-        //   [A6, B6, C6, D6, E6, F6, G6, H6],
-        //   [A5, B5, C5, D5, E5, F5, G5, H5],
-        //   [A4, B4, C4, D4, E4, F4, G4, H4],
-        //   [A3, B3, C3, D3, E3, F3, G3, H3],
-        //   [A2, B2, C2, D2, E2, F2, G2, H2],      white side
-        //   [A1, B1, C1, D1, E1, F1, G1, H1]  ]
+        // [ [00, 01, 02, 03, 04, 05, 06, 07],      top-left is [0][0] = A8, bottom right is[7][7] = H1
+        //   [10, 11, 12, 13, 14, 15, 16, 17],      black side
+        //   [20, 21, 22, 23, 24, 25, 26, 27],
+        //   [30, 31, 32, 33, 34, 35, 36, 37],
+        //   [40, 41, 42, 43, 44, 45, 46, 47],
+        //   [50, 51, 52, 53, 54, 55, 56, 57],
+        //   [60, 61, 62, 63, 64, 65, 66, 67],      white side
+        //   [70, 71, 72, 73, 74, 75, 76, 77]  ]
 
         for (let i=0; i<8; i++) {
-            this.board[1][i].addPiece(new Pawn(i, 1, "black")) 
-            this.board[6][i].addPiece(new Pawn(i, 6, "white")) 
+            this.board[1][i].setPiece(new Pawn(1, i, "black", this.board)) 
+            this.board[6][i].setPiece(new Pawn(6, i, "white", this.board)) 
             
             if (i==0 || i==7) { //make new rooks
-                this.board[0][i].addPiece(new Rook(i, 0, "black")) 
-                this.board[7][i].addPiece(new Rook(i, 0, "white")) 
+                this.board[0][i].setPiece(new Rook(0, i, "black", this.board)) 
+                this.board[7][i].setPiece(new Rook(7, i, "white", this.board)) 
             }
             else if (i==1 || i==6) { //make new knights
-                this.board[0][i].addPiece(new Knight(i, 0, "black"))
-                this.board[7][i].addPiece(new Knight(i, 0, "white"))
+                this.board[0][i].setPiece(new Knight(0, i, "black", this.board))
+                this.board[7][i].setPiece(new Knight(7, i, "white", this.board))
             }
 
             else if (i==2 || i==5) { //make new bishops
-                this.board[0][i].addPiece(new Bishop(i, 0, "black"))
-                this.board[7][i].addPiece(new Bishop(i, 0, "white"))
+                this.board[0][i].setPiece(new Bishop(0, i, "black", this.board))
+                this.board[7][i].setPiece(new Bishop(7, i, "white", this.board))
             }
 
             else if (i==3) { //make a new Queen 
-                this.board[0][i].addPiece(new Queen(i, 0, "black"))
-                this.board[7][i].addPiece(new Queen(i, 0, "white"))
+                this.board[0][i].setPiece(new Queen(0, i, "black", this.board))
+                this.board[7][i].setPiece(new Queen(7, i, "white", this.board))
             }
 
             else { //make a new King here
-                this.board[0][i].addPiece(new King(i, 0, "black")) 
-                this.board[7][i].addPiece(new King(i, 0, "white")) 
+                this.board[0][i].setPiece(new King(0, i, "black", this.board)) 
+                this.board[7][i].setPiece(new King(7, i, "white", this.board)) 
             }
         }
 
+    }
+
+    movePiece(s1,s2,d1,d2) { // d1 & d2 are destination coordinates and s1 & s2 are the source coordinates
+        this.board[d1][d2].setPiece(this.board[s1][s2].removePiece())
     }
 
     getBoard() {
