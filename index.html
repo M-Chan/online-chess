@@ -230,8 +230,42 @@
             </div>
         </div>
     </div>
+
+    <div class="turn">
+        <div id="white" class="turnText turnText--visible">
+            <p>White's <br> Turn</p>
+        </div>
+        <div id="black" class="turnText turnText--hidden">
+            <p>Black's <br> Turn</p>
+        </div>
+    </div>
+
+    <div class="banner">
+        <div id="whiteWins" class="winnerBanner winnerText winner--hidden">
+            <p>White Wins!</p>
+        </div>
+        <div id="blackWins" class="winnerBanner winnerText winner--hidden">
+            <p>Black Wins!</p>
+        </div>
+    </div>
 </body>
 
+
 <script type="module" src ="./app/Chess.js"></script>
+
+<!-- 
+<script>
+    const a8 = document.getElementById("00");
+    a8.removeChild(a8.firstChild)
+
+    const test = document.getElementById("27");
+
+    var testdiv = document.createElement("div");
+
+    testdiv.classList.add('availableSquares');
+
+    test.appendChild(testdiv)
+</script> -->
+
 
 </html>

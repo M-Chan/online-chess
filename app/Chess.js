@@ -3,18 +3,17 @@ import ChessBoard from "./Chessboard.js"
 let chessBoard = new ChessBoard();
 
 let activeSquare;
+
 let chessPiece;
 let chessPiece2;
 let pieceObj;
 let availableMoveLocations;
 let HTMLElement;
 
-var piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whiteKing", "blackKing", "whiteQueen", "blackQueen", 
-                     "whiteBishop", "blackBishop","whiteKnight", "blackKnight" ]
-                    
-/*
-while game not concluded, alternate between white and black
-*/
+
+let i = 0
+
+let piecesClass = ["whitePawn", "whiteRook", "whiteKing", "whiteQueen", "whiteBishop", "whiteKnight", "blackPawn", "blackRook", "blackKing", "blackQueen", "blackBishop", "blackKnight" ]
 
 function removeAvailableSquares() {
     availableMoveLocations.forEach(element => {
@@ -86,6 +85,7 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
             chessPiece = ($(item).attr("class").split(/\s+/)).filter(value => piecesClass.includes(value)) //captured piece
             chessPiece2 = ($(activeSquare).attr("class").split(/\s+/)).filter(value => piecesClass.includes(value)) //capturing piece
     
+
             item.classList.remove(chessPiece)
             activeSquare.classList.remove(chessPiece2)
             activeSquare.classList.remove("activeSquare")
@@ -97,7 +97,6 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
             
             //check if the piece is a pawn and if it is eligible to be upgraded
             checkPawnUpgrade(item, chessPiece2)
-
         }
     }
 
@@ -142,11 +141,10 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
         availableMoveLocations.forEach(element => {
             HTMLElement = document.getElementById(`${element[0]}${element[1]}`)
             if (!HTMLElement.classList.contains("empty")){
-                HTMLElement.classList.add("pieceInDanger")
-            }
-            
+                HTMLElement.classList.add("pieceInDanger")}
+          
             HTMLElement.classList.add("availableSquares")
-            
+                
         })
     }
 
