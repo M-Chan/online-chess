@@ -4,7 +4,7 @@ export class Queen extends Pawn {
 
     constructor(oI, iI, colour, chessBoard) {
         super(oI, iI, colour, chessBoard)
-        this.description = `${colour} queen`
+        this.description = `${colour}Queen`
     }
 
     move(){

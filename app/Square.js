@@ -55,6 +55,14 @@ export default class Square {
         
     }
 
+    containsOnlyOppositeColour(colour) {
+        try {
+            return (this.piece.colour !== colour)
+        } catch (error) {
+            return false
+        }
+    }
+
     whichColourPiece(){
         if (this.piece == null){
             return "empty"

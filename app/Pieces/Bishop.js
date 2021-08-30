@@ -4,7 +4,7 @@ export default class Bishop extends Pawn {
        
     constructor(oI, iI, colour, chessBoard) {
         super(oI, iI, colour, chessBoard)
-        this.description = `${colour} bishop`
+        this.description = `${colour}Bishop`
 
     }
 

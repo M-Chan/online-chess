@@ -1,6 +1,6 @@
 1) Pawn capturing: en passant is not present
 
-2) Pawn queening when it reaches the end of the board
+2) For some reason white pawns go back when they capture a black pawn that hasn't moved yet
 
 **3 and 3.5 are caused by the same error
 --------------------------------------------------------------------------------------------

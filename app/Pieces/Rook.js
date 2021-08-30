@@ -3,7 +3,7 @@ export default class Rook extends Pawn {
 
     constructor(oI, iI, colour, chessBoard) {
         super(oI, iI, colour, chessBoard)
-        this.description = `${colour} rook`
+        this.description = `${colour}Rook`
 
     }
 

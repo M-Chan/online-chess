@@ -5,6 +5,7 @@
 
 html{
     padding: 5%;
+    
 }
 
 .container{
@@ -19,7 +20,7 @@ html{
     align-items: center;
 	width: 80vh;
 	height: 80vh;
-    
+    padding-left: 50px;
 }
 
 .lightBox{

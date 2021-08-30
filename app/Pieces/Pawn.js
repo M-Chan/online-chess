@@ -2,8 +2,6 @@
 
 export default class Pawn {
 
-    #description
-
     constructor(oI,iI, colour, chessBoard) {
         this.oI = oI; //outer index
         this.iI = iI; //inner index
@@ -11,16 +9,13 @@ export default class Pawn {
         this.moves = 0;  //number of moves that a piece has done
         this.chessBoard = chessBoard  //pass in the chessBoard object
         this.aML = []  //aML = availableMoveLocations
-        this.description = `${colour} pawn`
+        this.description = `${colour}Pawn`
         
     }
 
     upgrade() {
-        return prompt("Which piece would you like to upgrade to, enter 'k' 'b' 'r' or 'q'?", "q").charAt(0).toLowerCase();
-    }
-
-    getColour(){
-        return this.colour;
+        let response = prompt("Which piece would you like to upgrade to, enter 'k' 'b' 'r' or 'q'?", "Queen").charAt(0).toLowerCase();
+        return response.charAt(0);
     }
 
     updateLocation(oI, iI){
@@ -32,92 +27,121 @@ export default class Pawn {
         this.moves++;
     }
 
-    getDescription(){
-        return this.description;
+    getColour() {
+        return this.colour
     }
 
+    
+    // possibleCaptures() {
+
+    //     if (this.colour === "white"){
+    //         try {
+    //             if ((this.chessBoard[this.oI-1][this.iI-1]).containsBlack()) { //"capturable" position (top left)
+    //                 this.aML.push([this.oI-1,this.iI-1])
+    //             } 
+    //         } catch (error) {
+                
+    //         }
+
+    //         try {
+    //             if ((this.chessBoard[this.oI-1][this.iI+1]).containsBlack()) { //"capturable" position (top right)
+    //                 this.aML.push([this.oI-1,this.iI+1])
+    //             }
+    //         } catch (error) {
+                
+    //         }
+
+    //         //en passant capture
+
+    //         // try {
+    //         //     let piece = this.chessBoard[this.oI][this.iI-1].getPiece()
+    //         //     if ((piece.getDescription() === "black pawn") && (piece.getMoves() === 1)){
+    //         //         this.aML.push([this.oI,this.iI-1])
+    //         //     }
+
+    //         //     console.log("hello")
+    //         // } catch (error) {
+                
+    //         // }
+
+    //         // //en passant capture
+    //         // try {
+    //         //     let piece = this.chessBoard[this.oI][this.iI+1].getPiece()
+    //         //     if ((piece.getDescription() === "black pawn") && (piece.getMoves() === 1)){
+    //         //         this.aML.push([this.oI,this.iI+1])
+    //         //     }
+    //         //     console.log("hello")
+    //         // } catch (error) {
+                
+    //         // }
+    //     }
+
+    //     else {
+    //         try {
+    //             if ((this.chessBoard[this.oI+1][this.iI-1]).containsWhite()) { //"capturable" position (top left)
+    //                 this.aML.push([this.oI+1,this.iI-1])
+    //             }
+    //         } catch (error) {
+                
+    //         }
+
+    //         try {
+    //             if((this.chessBoard[this.oI+1][this.iI+1]).containsWhite()) { //"capturable" position (top right)
+    //                 this.aML.push([this.oI+1,this.iI+1])
+    //             }
+    //         } catch (error) {
+                
+    //         }
+
+    //         //en passant capture
+    //         // try {
+    //         //     let piece = this.chessBoard[this.oI][this.iI-1].getPiece()
+    //         //     if ((piece.getDescription() === "white pawn") && (piece.getMoves() === 1)){
+    //         //         this.aML.push([this.oI,this.iI-1])
+    //         //     }
+    //         //     console.log("hello")
+    //         // } catch (error) {
+                
+    //         // }
+
+    //         // //en passant capture
+    //         // try {
+    //         //     let piece = this.chessBoard[this.oI][this.iI+1].getPiece()
+    //         //     if ((piece.getDescription() === "white pawn") && (piece.getMoves() === 1)){
+    //         //         this.aML.push([this.oI,this.iI+1])
+    //         //     }
+    //         //     console.log("hello")
+    //         // } catch (error) {
+                
+    //         // }
+    //     }
+
+    // }
+
+    // [ [00, 01, 02, 03, 04, 05, 06, 07],      top-left is [0][0] = A8, bottom right is[7][7] = H1
+    //   [10, 11, 12, 13, 14, 15, 16, 17],      black side
+    //   [20, 21, 22, 23, 24, 25, 26, 27],
+    //   [30, 31, 32, 33, 34, 35, 36, 37],
+    //   [40, 41, 42, 43, 44, 45, 46, 47],
+    //   [50, 51, 52, 53, 54, 55, 56, 57],
+    //   [60, 61, 62, 63, 64, 65, 66, 67],      white side
+    //   [70, 71, 72, 73, 74, 75, 76, 77]  ]
+
     possibleCaptures() {
-
-        if (this.colour === "white"){
-            try {
-                if ((this.chessBoard[this.oI-1][this.iI-1]).containsBlack()) { //"capturable" position (top left)
-                    this.aML.push([this.oI-1,this.iI-1])
-                } 
-            } catch (error) {
-                
-            }
-
-            try {
-                if ((this.chessBoard[this.oI-1][this.iI+1]).containsBlack()) { //"capturable" position (top right)
-                    this.aML.push([this.oI-1,this.iI+1])
-                }
-            } catch (error) {
-                
-            }
-
-            //en passant capture
-
-            // try {
-            //     let piece = this.chessBoard[this.oI][this.iI-1].getPiece()
-            //     if ((piece.getDescription() === "black pawn") && (piece.getMoves() === 1)){
-            //         this.aML.push([this.oI,this.iI-1])
-            //     }
-
-            //     console.log("hello")
-            // } catch (error) {
-                
-            // }
-
-            // //en passant capture
-            // try {
-            //     let piece = this.chessBoard[this.oI][this.iI+1].getPiece()
-            //     if ((piece.getDescription() === "black pawn") && (piece.getMoves() === 1)){
-            //         this.aML.push([this.oI,this.iI+1])
-            //     }
-            //     console.log("hello")
-            // } catch (error) {
-                
-            // }
+        try {
+            if ((this.chessBoard[this.oI-1][this.iI-1]).containsJustOppositeColour(this.colour)) { //"capturable" position (top left)
+                this.aML.push([this.oI-1,this.iI-1])
+            } 
+        } catch (error) {
+            
         }
 
-        else {
-            try {
-                if ((this.chessBoard[this.oI+1][this.iI-1]).containsWhite()) { //"capturable" position (top left)
-                    this.aML.push([this.oI+1,this.iI-1])
-                }
-            } catch (error) {
-                
+        try {
+            if ((this.chessBoard[this.oI-1][this.iI+1]).containsJustOppositeColour(this.colour)) { //"capturable" position (top right)
+                this.aML.push([this.oI-1,this.iI+1])
             }
-
-            try {
-                if((this.chessBoard[this.oI+1][this.iI+1]).containsWhite()) { //"capturable" position (top right)
-                    this.aML.push([this.oI+1,this.iI+1])
-                }
-            } catch (error) {
-                
-            }
-
-            //en passant capture
-            // try {
-            //     let piece = this.chessBoard[this.oI][this.iI-1].getPiece()
-            //     if ((piece.getDescription() === "white pawn") && (piece.getMoves() === 1)){
-            //         this.aML.push([this.oI,this.iI-1])
-            //     }
-            //     console.log("hello")
-            // } catch (error) {
-                
-            // }
-
-            // //en passant capture
-            // try {
-            //     let piece = this.chessBoard[this.oI][this.iI+1].getPiece()
-            //     if ((piece.getDescription() === "white pawn") && (piece.getMoves() === 1)){
-            //         this.aML.push([this.oI,this.iI+1])
-            //     }
-            //     console.log("hello")
-            // } catch (error) {
-                
-            // }
+        } catch (error) {
+            
         }
 
     }
@@ -155,7 +179,7 @@ export default class Pawn {
         this.aML = []
     
         if (this.moves === 0){
-            return this.firstMove()
+            return this.firstMove()  //incorporates capture of opponent's piece on the first move
         }
 
         else { // second move onwards

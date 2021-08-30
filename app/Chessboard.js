@@ -8,8 +8,7 @@ import { King } from "./Pieces/King.js";
 
 export default class ChessBoard {
     
-    numMoves = 0
-    turn = "white"
+    turn = "White's turn"
 
     constructor() {
 
@@ -63,6 +62,17 @@ export default class ChessBoard {
 
     movePiece(s1,s2,d1,d2) { // d1 & d2 are destination coordinates and s1 & s2 are the source coordinates
         this.board[d1][d2].setPiece(this.board[s1][s2].removePiece())
+        
+
+        //after each move, the current turn changes
+        if (this.turn === "White's turn"){
+            this.turn = "Black's turn"
+        }
+        else {
+            this.turn = "White's turn"
+        }
+
+        return this.turn
     }
 
     getBoard() {
@@ -75,24 +85,26 @@ export default class ChessBoard {
 
     makeNewQueen(oI, iI, colour){
         this.board[oI][iI].setPiece(new Queen(oI, iI, colour, this.board))
+        return `${colour}Queen`
     }
 
     makeNewKnight(oI, iI, colour){
         this.board[oI][iI].setPiece(new Knight(oI, iI, colour, this.board))
+        return `${colour}Knight`
     }
 
     makeNewBishop(oI, iI, colour){
         this.board[oI][iI].setPiece(new Bishop(oI, iI, colour, this.board))
+        return `${colour}Bishop`
     }
 
     makeNewRook(oI, iI, colour){
         this.board[oI][iI].setPiece(new Rook(oI, iI, colour, this.board))
+        return `${colour}Rook`
     }
 
-    playMove() {
-        numMoves++
-    }
 
+    // these 3 methods need to be done later on
     isCheckMate() {
         
     }
