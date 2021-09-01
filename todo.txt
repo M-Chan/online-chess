@@ -10,3 +10,10 @@ a**3 and 3.5 are caused by the same error
 5) Right now the king can just move anywhere, further refinement needed here (can't move into check basically)
 
 6) Can't move a piece if it exposed the king to a check (pinned pieces)
+
+
+Alek: working on the React side of this project as well as the socket.io thingies
+
+TingTing: fix the CSS bugs and learn a bit of socket.io
+
+Sai: React and Socket.io
