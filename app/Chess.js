@@ -71,12 +71,6 @@ function checkPawnUpgrade(item, chessObj) { //item is a HTML DOM element and the
 
 function updateChessPiece(item) {
 
-    //lastActiveSquare = activeSquare
-    //lastActiveSquare.classList.add("lastLocation")
-    // lastActiveSquare = activeSquare
-    // activeSquare.classList.add("lastLocation")
-    // lastActiveSquare.classList.remove("lastLocation")
-
     lastActiveSquares.unshift(activeSquare)
     try {
         lastActiveSquares[0].classList.add("lastLocation")
