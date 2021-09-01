@@ -13,18 +13,13 @@ let description;
 let result;
 let whoseTurn;
 let pieceObj;
-
+let lastActiveSquares = [];
 
 const turnElement =  document.getElementById("turn")
 
 const piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whiteKing", "blackKing", "whiteQueen", "blackQueen", 
                      "whiteBishop", "blackBishop","whiteKnight", "blackKnight" ]
-
                     
-/*
-while game not concluded, alternate between white and black
-*/
-
 function removeAvailableSquares() {
     availableMoveLocations.forEach(element => {
         document.getElementById(`${element[0]}${element[1]}`).classList.remove("availableSquares", "pieceInDanger", "enPassant")
@@ -61,7 +56,7 @@ function checkPawnUpgrade(item, chessObj) { //item is a HTML DOM element and the
                 description = chessBoard.makeNewQueen(piece.oI, piece.iI, piece.colour)
                 break;
             default:
-                piece.upgrade()
+                checkPawnUpgrade(item, chessObj) //calling recursively until a valid input is given
         }
         
         //reflecting this change on output chessboard
@@ -76,7 +71,25 @@ function checkPawnUpgrade(item, chessObj) { //item is a HTML DOM element and the
 
 function updateChessPiece(item) {
 
+    //lastActiveSquare = activeSquare
+    //lastActiveSquare.classList.add("lastLocation")
+    // lastActiveSquare = activeSquare
+    // activeSquare.classList.add("lastLocation")
+    // lastActiveSquare.classList.remove("lastLocation")
 
+    lastActiveSquares.unshift(activeSquare)
+    try {
+        lastActiveSquares[0].classList.add("lastLocation")
+        lastActiveSquares[1].classList.remove("lastLocation")
+    } catch (error) {
+        
+    }
+
+    while (lastActiveSquares.length > 2){
+        lastActiveSquares.pop()
+    }
+
+    
     availableMoveLocations=[]
     pieceObj = chessBoard.getPiece(activeSquare.id)
     pieceObj.increaseMoves()
