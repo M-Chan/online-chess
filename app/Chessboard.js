@@ -75,6 +75,14 @@ export default class ChessBoard {
         return this.turn
     }
 
+    clearSquare(id){
+        this.board[id.charAt(0)][id.charAt(1)].removePieceNoReturn()
+    }
+
+    whoseTurn() {
+        return this.turn;
+    }
+
     getBoard() {
         return this.board;
     }

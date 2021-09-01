@@ -14,6 +14,10 @@ html{
     align-items: center;
 }
 
+.wrongTurn {
+    color: red;
+}
+
 #chessBoard{
     display:flex;
     justify-content: center;
@@ -70,4 +74,23 @@ html{
     border-radius: 50%;
     /* max-width: 4vh;
     max-height: 4vh; */
+}
+
+
+.enPassant {
+    position: relative;
+    transform: translate3d(-50%, -50%, 0);
+    top: 50%;
+    left: 50%;
+    
+    background-color: rgb(231, 20, 48);
+    border-radius: 50%;
+    /* max-width: 4vh;
+    max-height: 4vh; */
+
+}
+
+
+.lastLocation {
+    background-color: rgb(198, 240, 194);
 }

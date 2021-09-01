@@ -1,8 +1,4 @@
-1) Pawn capturing: en passant is not present
-
-2) For some reason white pawns go back when they capture a black pawn that hasn't moved yet
-
-**3 and 3.5 are caused by the same error
+a**3 and 3.5 are caused by the same error
 --------------------------------------------------------------------------------------------
 3) Pieces to be captured shrink into the circle - need to fix this bug
 
@@ -14,5 +10,3 @@
 5) Right now the king can just move anywhere, further refinement needed here (can't move into check basically)
 
 6) Can't move a piece if it exposed the king to a check (pinned pieces)
-
-7) The game needs to be played in turns 
