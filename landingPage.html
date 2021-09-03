@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/landingPage.css">
     <title>Online Chess!</title>
 </head>
 <body>
-    <h1>Welcome to Online Chess</h1>
+    <div class="container">
+        <div class="header"><h1>Welcome to Online Chess</h1></div>
 
-    <p>Are you playing over the internet or locally?</p>
+        <div class="questions">
+            <div class="qu">
+                <input type="checkbox" id="gamePlay" class="toggle">
+                <label for="gamePlay">Would you like to play over the internet?</label>
+            </div>
+
+            <div class="qu">
+                <input type="checkbox" id="timedType">
+                <label for="timedType">Would you like the game to be timed?</label>
+            </div>
+        </div>
+
+        <div class="submission">
+            <input type="submit" value="Play!">
+        </div>
+    </div>
     
-    <p>Would you like the game to be timed?</p>
-
-
-    <p> ... need to include styling and add options for user input like a toggle switch or something?</p>
 </body>
 </html>
