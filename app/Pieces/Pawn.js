@@ -1,111 +1,172 @@
+//NEED TO INCLUDE: en passant
+
 export default class Pawn {
 
-    constructor(Xcoord,Ycoord, colour) {
-        this.Xcoord = Xcoord;
-        this.Ycoord = Ycoord;
+    constructor(oI, iI, colour, chessBoard) {
+        this.oI = oI; //outer index
+        this.iI = iI; //inner index
         this.colour = colour;
-        this.moves = 0; //number of moves that a piece has done
-        this.description = `${colour} pawn`;
-        this.availableMoves = 2;
-        this.active = false;
-    }
-
-    canMoveTo() {
-
+        this.moves = 0;  //number of moves that a piece has done
+        this.chessBoard = chessBoard  //pass in the chessBoard object
+        this.aML = []  //aML = availableMoveLocations
+        this.description = `${colour}Pawn`
+        this.enPassantRight = false;
+        this.enPassantLeft = false;
     }
 
     upgrade() {
+        let response = prompt("Which piece would you like to upgrade to, enter 'k' 'b' 'r' or 'q'?", "Queen").charAt(0).toLowerCase();
+        return response.charAt(0);
+    }
 
-        if (this.colour === "black") {
-            if (this.Xcoord === 7) {
-                //upgrade this to a new piece
+    updateLocation(oI, iI){
+        this.oI = oI;
+        this.iI = iI;
+    }
 
-                //remove this piece array[y][x] = null
+    increaseMoves() {
+        this.moves++;
+    }
+
+    getColour() {
+        return this.colour
+    }
+
+    possibleCaptures() {
+        
+        let piece1 = null;
+        let piece2 = null;
+
+        if (this.colour === "white"){
+            
+            //"capturable" position (top left)
+            if (this.oI>0 && this.iI>0 && this.chessBoard[this.oI-1][this.iI-1].containsOnlyOppositeColour(this.colour)) { 
+                // console.log("there is a piece to the left that can be captured")
+                this.aML.push([this.oI-1,this.iI-1])
+            } 
+
+            //"capturable" position (top right)
+            if (this.oI>0 && this.iI<7 && this.chessBoard[this.oI-1][this.iI+1].containsOnlyOppositeColour(this.colour)) { 
+                this.aML.push([this.oI-1,this.iI+1])
+                // console.log("there is a piece to the right that can be captured")
+            }
+
+            //en passant
+            if (this.oI === 3){
+
+                try {
+                    piece1 = this.chessBoard[this.oI][this.iI-1].getPiece()
+                } catch (error) { piece1 = null}
+
+                try {
+                    piece2 = this.chessBoard[this.oI][this.iI+1].getPiece()
+                } catch (error) { piece2 = null}
                 
-                //make new knight/bishop/rook/queen at this location
-                let newPiece = prompt("Which piece would you like to upgrade to, enter 'k' 'b' 'r' or 'q'?", "q");
+                
+                if (piece1 !== null && piece1.description === "blackPawn" && piece1.moves === 1){
+                    this.aML.push([this.oI-1,this.iI-1])
+                    // console.log("can capture the black piece en passant")
+                    this.enPassantLeft = true
+                }
+        
+                if (piece2 !== null && piece2.description === "blackPawn" && piece2.moves === 1){
+                    this.aML.push([this.oI-1,this.iI+1])
+                    // console.log("can capture the black piece en passant")
+                    this.enPassantRight = true
+                }
+            
+            }
 
-                switch(newPiece) {
-                    case k:
-                        //knight
-                        break;
-                    case b:
-                        //bishop
-                        break;
-                    case r:
-                        //rook
-                        break;
-                    case q:
-                        //queen
-                        break;
-                    default:
-                        //queen
+        }
+
+        else { //if the piece is black
+            
+            //"capturable" position (bottom left)
+            if (this.oI<7 && this.iI>0 && this.chessBoard[this.oI+1][this.iI-1].containsOnlyOppositeColour(this.colour)) { 
+                this.aML.push([this.oI+1,this.iI-1])
+                // console.log("there is a piece to the left bottom that can be captured")
+            } 
+
+            //"capturable" position (bottom right)
+            if (this.oI<7 && this.iI<7 && this.chessBoard[this.oI+1][this.iI+1].containsOnlyOppositeColour(this.colour)) { 
+                this.aML.push([this.oI+1,this.iI+1])
+                // console.log("there is a piece to the right bottom that can be captured")
+            }
+
+            //en passant
+            if (this.oI === 4){ 
+
+                try {
+                    piece1 = this.chessBoard[this.oI][this.iI-1].getPiece()
+                } catch (error) { piece1 = null}
+
+                try {
+                    piece2 = this.chessBoard[this.oI][this.iI+1].getPiece()
+                } catch (error) { piece2 = null}
+                
+                
+                if(piece1 != null && piece1.description === "whitePawn" && piece1.moves === 1){
+                    this.aML.push([this.oI+1,this.iI-1])
+                    // console.log("can capture the white piece en passant")
+                    this.enPassantLeft = true
                 }
 
+                if (piece2 !== null && piece2.description === "whitePawn" && piece2.moves === 1){
+                    this.aML.push([this.oI+1,this.iI+1])
+                    // console.log("can capture the white piece en passant")
+                    this.enPassantRight = true
+                }
+            }
+        }
+    }
+
+    firstMove(){
+        if (this.colour === "white"){
+            if (this.chessBoard[this.oI-1][this.iI].isEmpty()){      //one square ahead
+                this.aML.push([this.oI-1,this.iI])
+
+                if ((this.chessBoard[this.oI-2][this.iI]).isEmpty()) { //two squares ahead
+                    this.aML.push([this.oI-2,this.iI])
+                }
             }
         }
 
+        else { //when it's a black pawn
+            
+            if ((this.chessBoard[this.oI+1][this.iI]).isEmpty()){      //one square ahead
+                this.aML.push([this.oI+1,this.iI])
 
-        else if (this.colour === 'white') { 
-            if (this.Xcoord === 0) {
-                //upgrade this to a new piece
-            }        
+                if ((this.chessBoard[this.oI+2][this.iI]).isEmpty()) { //two squares ahead
+                    this.aML.push([this.oI+2,this.iI]) 
+                }
+            }
         }
-
-        
+        this.possibleCaptures()
+        return this.aML
     }
 
     move() { //this method also incorporates capture
 
-        if (this.colour === "white") {
-            if (this.moves === 0){
-                //move up by two positions
-                if (chessboard[this.Ycoord - 1] === null) {  //directly in front of the pawn
-                    if(chessboard[this.Ycoord - 2] === null) {
-                        //pawn could move 2 spaces forward - we have to ask user if they want to move 1 or 2 ahead
-
-                        //input - where the user clicks
-
-                        //check the logic of it (i.e. cannot move three to the right)
-
-                        // if (this.canMoveTo(x,y)){
-                            
-                        
-                    }
-                }
-                
-            }
-
-            else if ((chessboard[this.Ycoord -1][this.Xcoord - 1] != null) || (chessboard[this.Ycoord -1][this.Xcoord + 1] != null)) {
-                // includes white movement and movement through capturing black pieces
-                //en passante
-                //check if those pieces are the opposite colour
-
-            }
-
-            else {
-                
-            }
-        }
-        
-
-        else { //if the chess piece is black
-            if (this.moves === 0){
-                //move up by two positions
-                if (chessboard[this.Ycoord + 1] === null || chessboard[this.Ycoord + 2] === null) {
-                    
-                }
-
-                else {
-
-                }
-            }
-        }
-
+        this.aML = []
     
-        this.upgrade();
+        if (this.moves === 0){
+            return this.firstMove()  //incorporates capture of opponent's piece on the first move
+        }
 
+        else { // second move onwards
+            this.possibleCaptures();
+
+            try {
+                if (this.colour === "white" && this.chessBoard[this.oI-1][this.iI].isEmpty()) { //one square ahead
+                    this.aML.push([this.oI-1,this.iI])
+                }
+                else if (this.colour ==="black" && this.chessBoard[this.oI+1][this.iI].isEmpty()) { //if the chess piece is black  //one square ahead
+                    this.aML.push([this.oI+1,this.iI])
+                }     
+            }
+            catch (error) {}
+
+            return this.aML;
+        }
     }
-
-
 }

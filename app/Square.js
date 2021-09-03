@@ -1,7 +1,7 @@
 export default class Square {
 
-    active = false
-    threatened = false
+    threatenedByWhite = false
+    threatenedByBlack = false
     piece = null
 
     constructor(identifier){
@@ -12,24 +12,91 @@ export default class Square {
         this.piece = piece
     }
 
+    setPiece(piece) {
+        this.piece = piece
+    }
+    
+    isEmpty() {
+        return (this.piece === null)
+    }
+
     removePiece(){
+        let x = this.piece
+        this.piece = null
+        return x
+    }
+
+    removePieceNoReturn(){
         this.piece = null
     }
-
-    setActive() {
-        this.active = true
+    getPiece() {
+        return this.piece
     }
 
-    setUnActive(){
-        this.active = false
+    containsBlack(){
+        try {
+            return (this.piece.colour === "black")
+        } catch (error) {
+            return false;
+        }
+    }
+    
+    containsWhite(){
+        try {
+            return (this.piece.colour === "white")
+        } catch (error) {
+            return false;
+        }
     }
 
-    threaten() {
-        this.threatened = true
+    containsOppositeColour(colour) {
+        try {
+            return (this.piece.colour !== colour)
+        } catch (error) {
+            return true
+        }
+        
     }
 
-    unthreaten() {
-        this.threatened = false
+    containsOnlyOppositeColour(colour) {
+        try {
+            return (this.piece.colour !== colour)
+        } catch (error) {
+            return false
+        }
+    }
+
+    whichColourPiece(){
+        if (this.piece == null){
+            return "empty"
+        }
+
+        else return this.piece.colour
+    }
+
+    threaten(colour) {
+        if (colour === "white"){
+            this.threatenedByWhite = true
+        }
+
+        else if (colour === "black") {
+            this.threatenedByBlack = true
+        }
+
+        else return
+        
+    }
+
+    unthreaten(colour) {
+        if (colour === "white"){
+            this.threatenedByWhite = false
+        }
+
+        else if (colour === "black") {
+            this.threatenedByBlack = false
+        }
+
+        else return
     }
 
 }
