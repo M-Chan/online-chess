@@ -1,4 +1,4 @@
-import Square from "./Square.js"
+import Square from "./Square.js";
 import Pawn  from "./Pieces/Pawn.js";
 import { Queen } from "./Pieces/Queen.js";
 import Bishop from "./Pieces/Bishop.js";
