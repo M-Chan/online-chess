@@ -3,6 +3,13 @@
 	margin: 0;
 }
 
+body {
+    background-image: url(../assets/background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 html{
     padding: 5%;
 }
@@ -16,6 +23,7 @@ html{
 .header{
     font-family: sans-serif;
     font-size: 5vh;
+    color: white;
 
 }
 
