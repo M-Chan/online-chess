@@ -2,7 +2,7 @@
 
 export default class Pawn {
 
-    constructor(oI,iI, colour, chessBoard) {
+    constructor(oI, iI, colour, chessBoard) {
         this.oI = oI; //outer index
         this.iI = iI; //inner index
         this.colour = colour;
@@ -12,7 +12,6 @@ export default class Pawn {
         this.description = `${colour}Pawn`
         this.enPassantRight = false;
         this.enPassantLeft = false;
-
     }
 
     upgrade() {
@@ -86,14 +85,12 @@ export default class Pawn {
             if (this.oI<7 && this.iI>0 && this.chessBoard[this.oI+1][this.iI-1].containsOnlyOppositeColour(this.colour)) { 
                 this.aML.push([this.oI+1,this.iI-1])
                 // console.log("there is a piece to the left bottom that can be captured")
-
             } 
 
             //"capturable" position (bottom right)
             if (this.oI<7 && this.iI<7 && this.chessBoard[this.oI+1][this.iI+1].containsOnlyOppositeColour(this.colour)) { 
                 this.aML.push([this.oI+1,this.iI+1])
                 // console.log("there is a piece to the right bottom that can be captured")
-
             }
 
             //en passant
@@ -120,7 +117,6 @@ export default class Pawn {
                     this.enPassantRight = true
                 }
             }
-
         }
     }
 
@@ -131,7 +127,6 @@ export default class Pawn {
 
                 if ((this.chessBoard[this.oI-2][this.iI]).isEmpty()) { //two squares ahead
                     this.aML.push([this.oI-2,this.iI])
-                    
                 }
             }
         }
@@ -168,7 +163,8 @@ export default class Pawn {
                 else if (this.colour ==="black" && this.chessBoard[this.oI+1][this.iI].isEmpty()) { //if the chess piece is black  //one square ahead
                     this.aML.push([this.oI+1,this.iI])
                 }     
-            } catch (error) {}
+            }
+            catch (error) {}
 
             return this.aML;
         }

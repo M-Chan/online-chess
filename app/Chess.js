@@ -37,7 +37,7 @@ function checkPawnUpgrade(item, chessObj) { //item is a HTML DOM element and the
     piece = chessBoard.getPiece(item.id)
     
     //reached the end of board
-    if ((piece.description === "whitePawn") && (piece.oI === 0) || (piece.description === "blackPawn") && (piece.oI === 7)){ 
+    if (((piece.description === "whitePawn") && (piece.oI === 0)) || ((piece.description === "blackPawn") && (piece.oI === 7))){ 
         
         result = piece.upgrade()  //NOTE: result only contains the first character of the string returned
 
@@ -70,12 +70,6 @@ function checkPawnUpgrade(item, chessObj) { //item is a HTML DOM element and the
 }
 
 function updateChessPiece(item) {
-
-    //lastActiveSquare = activeSquare
-    //lastActiveSquare.classList.add("lastLocation")
-    // lastActiveSquare = activeSquare
-    // activeSquare.classList.add("lastLocation")
-    // lastActiveSquare.classList.remove("lastLocation")
 
     lastActiveSquares.unshift(activeSquare)
     try {
@@ -207,7 +201,6 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
             
             else if (activeSquare !== undefined){
                 deactivateActiveSquare()
-                
             }
 
             activeSquare = item

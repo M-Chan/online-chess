@@ -114,15 +114,17 @@ export default class ChessBoard {
 
     // these 3 methods need to be done later on
     isCheckMate() {
-        
+        //end the game and declare the winner
     }
 
     isCheck() {
-
+        //only allow moves that 'protect' the king
+        //occurs when 'piece in danger' is a king (black or white)
+        //we want to create a visible alert using the document.getElementById("checkText").classList.remove("is--hidden")
     }
 
     isStaleMate() {
-
+        //end the game and declare it as a draw
     }
 
 }          
