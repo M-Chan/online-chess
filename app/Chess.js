@@ -21,13 +21,13 @@ const piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whit
                      "whiteBishop", "blackBishop","whiteKnight", "blackKnight" ]
                     
 function removeAvailableSquares() {
-    availableMoveLocations.forEach(element => {
-        document.getElementById(`${element[0]}${element[1]}`).classList.remove("availableSquares", "pieceInDanger", "enPassant")
-    })
-
-    // document.querySelectorAll('.availableSquares').forEach(item => {
-    //     item.classList.remove("availableSquares", "pieceInDanger", "enPassant")
+    // availableMoveLocations.forEach(element => {
+    //     document.getElementById(`${element[0]}${element[1]}`).classList.remove("availableSquares", "pieceInDanger", "enPassant")
     // })
+
+    document.querySelectorAll('.availableSquares').forEach(item => {
+        item.classList.remove("availableSquares", "pieceInDanger", "enPassant")
+    })
 
 }
 
