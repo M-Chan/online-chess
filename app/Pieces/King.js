@@ -16,21 +16,21 @@ export class King extends Pawn {
   
             //Queen-side castling
             if ((this.chessBoard[this.oI][3].isEmpty()) && (this.chessBoard[this.oI][2].isEmpty()) && (this.chessBoard[this.oI][1].isEmpty())) { //checks if the squares in-between are empty
-                if (this.chessBoard[this.oI][0].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
-                    this.aML.push([this.oI, this.iI-2])
+                if (((!this.chessBoard[0][3].threatenedByWhite) && (!this.chessBoard[0][2].threatenedByWhite)) || ((!this.chessBoard[7][3].threatenedByBlack) && (!this.chessBoard[7][2].threatenedByBlack))) { //checks to see if any squares the king moves over isn't threatened 
+                    if (this.chessBoard[this.oI][0].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
+                        this.aML.push([this.oI, this.iI-2])
+                    }
                 }
             }
 
             //king-side castling
             else if ((this.chessBoard[this.oI][5].isEmpty()) && (this.chessBoard[this.oI][6].isEmpty())) { 
-                if (this.chessBoard[this.oI][7].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
-                    this.aML.push([this.oI, this.iI+2])
+                if (((!this.chessBoard[0][5].threatenedByWhite) && (!this.chessBoard[0][6].threatenedByWhite)) || ((!this.chessBoard[7][5].threatenedByBlack) && (!this.chessBoard[7][6].threatenedByBlack))) { //checks to see if any squares the king moves over isn't threatened  
+                    if (this.chessBoard[this.oI][7].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
+                        this.aML.push([this.oI, this.iI+2])
+                    }
                 }
             }
-
-            //for testing...
-            //console.log("LR", this.chessBoard[this.oI][0].piece.moves === 0)
-            //console.log("RR", this.chessBoard[this.oI][7].piece.moves === 0)
         }
 
         for (let i=0; i<8; i++){

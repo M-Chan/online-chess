@@ -169,12 +169,17 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
                 }
             }
 
+            //for castling...
+
+
             removeAvailableSquares()
             updateChessPiece(item)
             
             //check if the piece is a pawn and if it is eligible to be upgraded
             checkPawnUpgrade(item, chessPiece)
             
+            //check if the move causes the opponent to be in check
+
             //after the move we don't want any piece to be active
             activeSquare = undefined
         }
