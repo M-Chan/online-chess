@@ -75,9 +75,8 @@ function updateChessPiece(item) {
     try {
         lastActiveSquares[0].classList.add("lastLocation")
         lastActiveSquares[1].classList.remove("lastLocation")
-    } catch (error) {
-        
     }
+    catch (error) {}
 
     while (lastActiveSquares.length > 2){
         lastActiveSquares.pop()
@@ -101,6 +100,34 @@ function deactivateActiveSquare(){
 }
 
 
+function updateThreatenedPositions() {
+    const squares = document.querySelectorAll('.piece'); //creates an array of all the squares on the chessboard
+
+    squares.forEach(item => {
+        // check to see if each square is threatened or not
+
+        //console.log("hey", item.id, chessBoard.getPiece(item.id))
+        console.log(chessBoard.getPiece(item.id))
+
+        if (chessBoard.getPiece(item.id) === null) {}
+
+        //if the square containing the opposite king is now threatened, display check
+        // if ((chessBoard[item.id.charAt(0)][item.id.charAt(1)] === threatenedByWhite && chessBoard.getPiece(item.id).description === "blackKing") || (chessBoard[item.id.charAt(0)][item.id.charAt(1)] === threatenedByWhite && chessBoard.getPiece(item.id).description === "whiteKing")) {
+        else {
+            if ((chessBoard.getPiece(item.id).description === "blackKing") || (chessBoard.getPiece(item.id).description === "whiteKing")) {
+                chessBoard.isCheck();
+                document.getElementById("checkText").classList.remove("is--hidden");
+                while(1);
+            }
+    
+            else{
+                document.getElementById("checkText").classList.add("is--hidden")
+            }
+        }
+    })
+}
+
+// ######
 document.querySelectorAll('.piece').forEach(item => {item.addEventListener('click', () => {
     //whatever is here is executed whenever a square is clicked
 
@@ -131,7 +158,6 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
             
             //after the move we don't want any piece to be active
             activeSquare = undefined
-
         }
     }
 
@@ -249,7 +275,9 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
             //check if the piece is a pawn and if it is eligible to be upgraded
             checkPawnUpgrade(item, chessPiece)
             
-            //check if the move causes the opponent to be in check
+            //update which squares are under attack after the movement and check if the move causes the opponent to be in check
+            updateThreatenedPositions()
+            //console.log("updating threatened positions")
 
             //after the move we don't want any piece to be active
             activeSquare = undefined
@@ -266,6 +294,11 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
     //selecting the active square
     else if (!item.classList.contains("empty")) { //not empty then make it active square
         
+        // console.log(chessBoard.getPiece(item.id).description === "whitePawn")
+        // #####
+        //console.log(chessBoard.getPiece(item.id))
+        //console.log(item.id)
+
         if (chessBoard.getPiece(item.id).getColour() == whoseTurn){
         
             turnElement.classList.remove("wrongTurn")

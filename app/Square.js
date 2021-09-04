@@ -29,6 +29,7 @@ export default class Square {
     removePieceNoReturn(){
         this.piece = null
     }
+    
     getPiece() {
         return this.piece
     }

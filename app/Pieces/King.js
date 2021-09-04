@@ -14,6 +14,8 @@ export class King extends Pawn {
     move(){
         this.aML = []
 
+        console.log(this.chessBoard[this.oI][this.iI])
+
         this.castlingQueen = false;
         this.castlingKing = false;
 
