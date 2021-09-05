@@ -76,18 +76,6 @@ html{
     max-height: 50%; */
 }
 
-.castle{
-    position: relative;
-    transform: translate3d(-50%, -50%, 0);
-    top: 50%;
-    left: 50%;
-    
-    background-color: rgb(56, 219, 178);
-    border-radius: 50%;
-    /* max-width: 50%;
-    max-height: 50%; */
-}
-
 .pieceInDanger {
     position: relative;
     transform: translate3d(-50%, -50%, 0);
@@ -100,13 +88,6 @@ html{
     max-height: 4vh; */
 }
 
-/* trial - for a box with red corners when the piece is in danger */
-.dangerTest {
-    background: radial-gradient(transparent 0%, transparent 79%, rgba(255, 11, 2, 0.8) 80%);
-    z-index: 3;
-}
-
-
 .enPassant {
     position: relative;
     transform: translate3d(-50%, -50%, 0);
@@ -118,6 +99,18 @@ html{
     /* max-width: 4vh;
     max-height: 4vh; */
 
+}
+
+.castle{
+    position: relative;
+    transform: translate3d(-50%, -50%, 0);
+    top: 50%;
+    left: 50%;
+    
+    background-color: rgb(56, 219, 178);
+    border-radius: 50%;
+    /* max-width: 50%;
+    max-height: 50%; */
 }
 
 
@@ -147,6 +140,11 @@ html{
     text-align: center;
 }
 
+/* show king in check - for a box with red corners when the piece is in danger */
+.kingInCheck {
+    background: radial-gradient(transparent 0%, transparent 79%, rgba(255, 11, 2, 0.8) 80%);
+    z-index: 3;
+}
 
 
 /* for the ending of the game... */
@@ -181,10 +179,8 @@ html{
     text-align: center;
 }
 
-.is--visible{
-    display: block;
-}
 
+/* for displaying things */
 .is--hidden{
     display: none;
 }
