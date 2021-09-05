@@ -11,9 +11,8 @@
 </head>
 
 <body>
-    <h1 id="turn" style="font-family: monospace">White's turn</h1>
+    <h1 id="turn">White's turn</h1>
     <div class="container">
-        
         <div id="chessBoard">
             <div id="a">
                 <div class="lightBox box">
@@ -234,8 +233,27 @@
             </div>
         </div>
     </div>
+
+    <div id="banner">
+        <div id="whiteWins" class="winnerBanner winnerText is--hidden">
+            <p>White Wins!</p>
+        </div>
+        <div id="blackWins" class="winnerBanner winnerText is--hidden">
+            <p>Black Wins!</p>
+        </div>
+        <div id="drawStalemate" class="winnerBanner winnerText is--hidden">
+            <p>Draw!</p>
+        </div>
+    </div>
+
+    <div id="check">
+        <div id="checkText" class="is--hidden">
+            <p>Check!</p>
+        </div>
+    </div>
 </body>
 
 <script type="module" src ="./app/Chess.js"></script>
+
 
 </html>
