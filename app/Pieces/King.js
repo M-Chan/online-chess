@@ -2,24 +2,25 @@ import Pawn from "./Pawn.js";
 
 export class King extends Pawn {
 
-    places = [[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1]]
+    places = [[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1]];
 
     constructor(oI, iI, colour, chessBoard) {
         super(oI, iI, colour, chessBoard);
         this.description = `${colour}King`;
         this.castlingQueen = false;
         this.castlingKing = false;
+        this.check = false;
     }
 
-    move(){
-        this.aML = []
+    move() {
+        this.aML = [];
 
-        console.log(this.chessBoard[this.oI][this.iI])
+        //console.log(this.chessBoard[this.oI][this.iI]);
 
         this.castlingQueen = false;
         this.castlingKing = false;
 
-        if ((this.moves === 0) && (!this.check)) { //allows castling if the king has not moved yet and isn't in check
+        if ((this.moves === 0) && (!this.check)); { //allows castling if the king has not moved yet and isn't in check
   
             //Queen-side castling
             if ((this.chessBoard[this.oI][3].isEmpty()) && (this.chessBoard[this.oI][2].isEmpty()) && (this.chessBoard[this.oI][1].isEmpty())) { //checks if the squares in-between are empty
@@ -42,17 +43,25 @@ export class King extends Pawn {
             }
         }
 
-        console.log("king side", this.chessBoard[this.oI][this.iI].piece.castlingKing, "queen side", this.chessBoard[this.oI][this.iI].piece.castlingQueen)
+        //console.log("king side", this.chessBoard[this.oI][this.iI].piece.castlingKing, "queen side", this.chessBoard[this.oI][this.iI].piece.castlingQueen)
 
-        for (let i=0; i<8; i++){
+        for (let i=0; i<8; i++) {
             try {
-                if ((this.chessBoard[this.oI + this.places[i][0]][this.iI + this.places[i][1]]).whichColourPiece() !== this.colour){
-                    this.aML.push([this.oI + this.places[i][0], this.iI + this.places[i][1]])
+                if ((this.chessBoard[this.oI + this.places[i][0]][this.iI + this.places[i][1]]).whichColourPiece() !== this.colour) {
+                    this.aML.push([this.oI + this.places[i][0], this.iI + this.places[i][1]]); // moving one in all directions unless block by own
                 }
             }
             catch (error) {}
         }
+        return this.aML;
+    }
 
-        return this.aML
+    threaten() { //uses the move method and move locations to see which squares this piece is threatening
+        this.move().forEach(index => this.chessBoard[index[0]][index[1]].threaten(this.colour));
+        console.log(this.check); //checks whether the king is acknowledge to be in check (needed for castling etc.)
+    }
+
+    check() {
+        this.check = true; // this is not working
     }
 }

@@ -1,103 +1,96 @@
 export default class Square {
+    threatenedByWhite = false;
+    threatenedByBlack = false;
+    piece = null;
 
-    threatenedByWhite = false
-    threatenedByBlack = false
-    piece = null
-
-    constructor(identifier){
-        this.identifier = identifier //a string with the file and rank describing the location of that square
+    constructor(identifier) {
+        this.identifier = identifier; //a string with the file and rank describing the location of that square
     }
 
     addPiece(piece) {
-        this.piece = piece
+        this.piece = piece;
     }
 
     setPiece(piece) {
-        this.piece = piece
+        this.piece = piece;
     }
     
     isEmpty() {
-        return (this.piece === null)
+        return (this.piece === null);
     }
 
-    removePiece(){
-        let x = this.piece
-        this.piece = null
-        return x
+    removePiece() {
+        let x = this.piece;
+        this.piece = null;
+        return x;
     }
 
-    removePieceNoReturn(){
-        this.piece = null
+    removePieceNoReturn() {
+        this.piece = null;
     }
     
     getPiece() {
-        return this.piece
+        return this.piece;
     }
 
-    containsBlack(){
+    containsBlack() {
         try {
-            return (this.piece.colour === "black")
-        } catch (error) {
+            return (this.piece.colour === "black");
+        }
+        catch (error) {
             return false;
         }
     }
     
-    containsWhite(){
+    containsWhite() {
         try {
-            return (this.piece.colour === "white")
-        } catch (error) {
+            return (this.piece.colour === "white");
+        } 
+        catch (error) {
             return false;
         }
     }
 
     containsOppositeColour(colour) {
         try {
-            return (this.piece.colour !== colour)
-        } catch (error) {
-            return true
+            return (this.piece.colour !== colour);
         }
-        
+        catch (error) {
+            return true;
+        }
     }
 
     containsOnlyOppositeColour(colour) {
         try {
-            return (this.piece.colour !== colour)
-        } catch (error) {
-            return false
+            return (this.piece.colour !== colour);
+        }
+        catch (error) {
+            return false;
         }
     }
 
-    whichColourPiece(){
+    whichColourPiece() {
         if (this.piece == null){
-            return "empty"
+            return "empty";
         }
 
-        else return this.piece.colour
+        else return this.piece.colour;
     }
 
     threaten(colour) {
-        if (colour === "white"){
-            this.threatenedByWhite = true
+        if (colour === "white") {
+            this.threatenedByWhite = true;
         }
 
         else if (colour === "black") {
-            this.threatenedByBlack = true
+            this.threatenedByBlack = true;
         }
 
-        else return
-        
+        else return;
     }
 
-    unthreaten(colour) {
-        if (colour === "white"){
-            this.threatenedByWhite = false
-        }
-
-        else if (colour === "black") {
-            this.threatenedByBlack = false
-        }
-
-        else return
+    unthreaten() { //clears threated attributes 
+        this.threatenedByWhite = false;
+        this.threatenedByBlack = false;
     }
-
 }

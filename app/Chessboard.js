@@ -15,7 +15,7 @@ export default class ChessBoard {
         //making the actual chessboard array
         this.board = [...Array(8)].map((x, j) => {
             return Array(8).fill(null).map((y, i) => {
-                return new Square(`${j}${i}`) //initialising all the square objects with their identifiers - these match with the ids of the divs
+                return new Square(`${j}${i}`); //initialising all the square objects with their identifiers - these match with the ids of the divs
             })
         })
 
@@ -28,32 +28,32 @@ export default class ChessBoard {
         //   [60, 61, 62, 63, 64, 65, 66, 67],      white side
         //   [70, 71, 72, 73, 74, 75, 76, 77]  ]
 
-        for (let i=0; i<8; i++) {
-            this.board[1][i].addPiece(new Pawn(1, i, "black", this.board)) 
-            this.board[6][i].addPiece(new Pawn(6, i, "white", this.board)) 
+        for (let i=0; i<8; i++) { //making the initial pieces
+            this.board[1][i].addPiece(new Pawn(1, i, "black", this.board));
+            this.board[6][i].addPiece(new Pawn(6, i, "white", this.board));
             
             if (i==0 || i==7) { //make new rooks
-                this.board[0][i].addPiece(new Rook(0, i, "black", this.board)) 
-                this.board[7][i].addPiece(new Rook(7, i, "white", this.board)) 
+                this.board[0][i].addPiece(new Rook(0, i, "black", this.board));
+                this.board[7][i].addPiece(new Rook(7, i, "white", this.board)); 
             }
             else if (i==1 || i==6) { //make new knights
-                this.board[0][i].addPiece(new Knight(0, i, "black", this.board))
-                this.board[7][i].addPiece(new Knight(7, i, "white", this.board))
+                this.board[0][i].addPiece(new Knight(0, i, "black", this.board));
+                this.board[7][i].addPiece(new Knight(7, i, "white", this.board));
             }
 
             else if (i==2 || i==5) { //make new bishops
-                this.board[0][i].addPiece(new Bishop(0, i, "black", this.board))
-                this.board[7][i].addPiece(new Bishop(7, i, "white", this.board))
+                this.board[0][i].addPiece(new Bishop(0, i, "black", this.board));
+                this.board[7][i].addPiece(new Bishop(7, i, "white", this.board));
             }
 
             else if (i==3) { //make a new Queen 
-                this.board[0][i].addPiece(new Queen(0, i, "black", this.board))
-                this.board[7][i].addPiece(new Queen(7, i, "white", this.board))
+                this.board[0][i].addPiece(new Queen(0, i, "black", this.board));
+                this.board[7][i].addPiece(new Queen(7, i, "white", this.board));
             }
 
             else { //make a new King here
-                this.board[0][i].addPiece(new King(0, i, "black", this.board)) 
-                this.board[7][i].addPiece(new King(7, i, "white", this.board)) 
+                this.board[0][i].addPiece(new King(0, i, "black", this.board)); 
+                this.board[7][i].addPiece(new King(7, i, "white", this.board)); 
             }
         }
 
@@ -61,26 +61,31 @@ export default class ChessBoard {
 
 
     movePiece(s1,s2,d1,d2) { // d1 & d2 are destination coordinates and s1 & s2 are the source coordinates
-        this.board[d1][d2].setPiece(this.board[s1][s2].removePiece())
+        this.board[d1][d2].setPiece(this.board[s1][s2].removePiece());
         
 
         //after each move, the current turn changes
-        if (this.turn === "White's turn"){
-            this.turn = "Black's turn"
-        }
-        else {
-            this.turn = "White's turn"
+        if (this.turn === "White's turn") {
+            this.turn = "Black's turn";
         }
 
-        return this.turn
+        else {
+            this.turn = "White's turn";
+        }
+
+        return this.turn;
     }
 
-    clearSquare(id){
-        this.board[id.charAt(0)][id.charAt(1)].removePieceNoReturn()
+    clearSquare(id) {
+        this.board[id.charAt(0)][id.charAt(1)].removePieceNoReturn();
     }
 
     whoseTurn() {
         return this.turn;
+    }
+
+    getSquare(id) {
+        return this.board[id.charAt(0)][id.charAt(1)];
     }
 
     getBoard() {
@@ -88,27 +93,29 @@ export default class ChessBoard {
     }
 
     getPiece(id) {
-        return this.board[id.charAt(0)][id.charAt(1)].getPiece()
+        return this.board[id.charAt(0)][id.charAt(1)].getPiece();
     }
 
-    makeNewQueen(oI, iI, colour){
-        this.board[oI][iI].setPiece(new Queen(oI, iI, colour, this.board))
-        return `${colour}Queen`
+
+    //below is to make the new pieces when a pawn is promoted
+    makeNewQueen(oI, iI, colour) {
+        this.board[oI][iI].setPiece(new Queen(oI, iI, colour, this.board));
+        return `${colour}Queen`;
     }
 
-    makeNewKnight(oI, iI, colour){
-        this.board[oI][iI].setPiece(new Knight(oI, iI, colour, this.board))
-        return `${colour}Knight`
+    makeNewKnight(oI, iI, colour) {
+        this.board[oI][iI].setPiece(new Knight(oI, iI, colour, this.board));
+        return `${colour}Knight`;
     }
 
-    makeNewBishop(oI, iI, colour){
-        this.board[oI][iI].setPiece(new Bishop(oI, iI, colour, this.board))
-        return `${colour}Bishop`
+    makeNewBishop(oI, iI, colour) {
+        this.board[oI][iI].setPiece(new Bishop(oI, iI, colour, this.board));
+        return `${colour}Bishop`;
     }
 
-    makeNewRook(oI, iI, colour){
-        this.board[oI][iI].setPiece(new Rook(oI, iI, colour, this.board))
-        return `${colour}Rook`
+    makeNewRook(oI, iI, colour) {
+        this.board[oI][iI].setPiece(new Rook(oI, iI, colour, this.board));
+        return `${colour}Rook`;
     }
 
 
@@ -117,11 +124,11 @@ export default class ChessBoard {
         //end the game and declare the winner
 
         if(colour === white) { //white wins
-            document.getElementById("whiteWins").classList.remove("is--hidden")
+            document.getElementById("whiteWins").classList.remove("is--hidden");
         }
 
         else { //black wins
-            document.getElementById("blackWins").classList.remove("is--hidden")
+            document.getElementById("blackWins").classList.remove("is--hidden");
         }
 
         //stop all moves from working
@@ -131,16 +138,18 @@ export default class ChessBoard {
     isCheck() {
         //occurs when 'piece in danger' is a king (black or white) (logic written in Chess.js)
 
-        //only allow moves that 'protect' the king
+        //acknowledges that king is in check
+        console.log("check function is correctly called"); //for testing to see if this is referred to correctly
+        check(); // something doesn't work here
 
+        //only allow moves that 'protect' the king
     }
 
     isStaleMate() {
         //end the game and declare it as a draw
-        document.getElementById("drawStalemate").classList.remove("is--hidden")
+        document.getElementById("drawStalemate").classList.remove("is--hidden");
 
         //stop all moves from working
 
     }
-
 }          
