@@ -20,14 +20,19 @@ const turnElement =  document.getElementById("turn");
 const piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whiteKing", "blackKing", "whiteQueen", "blackQueen", "whiteBishop", "blackBishop","whiteKnight", "blackKnight"];
                     
 function removeAvailableSquares() {
+
     availableMoveLocations.forEach(element => {
         document.getElementById(`${element[0]}${element[1]}`).classList.remove("availableSquares", "pieceInDanger", "enPassant", "castle");
     })
 
     // document.querySelectorAll('.availableSquares').forEach(item => {
     //     item.classList.remove("availableSquares", "pieceInDanger", "enPassant");
+
     // })
 
+    document.querySelectorAll('.availableSquares').forEach(item => {
+        item.classList.remove("availableSquares", "pieceInDanger", "enPassant")
+    })
 }
 
 // if the piece is a pawn and it has made over 5 moves then check it has reached the edge of the board and call the upgrade method
