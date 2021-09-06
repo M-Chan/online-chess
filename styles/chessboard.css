@@ -70,10 +70,8 @@ html{
     top: 50%;
     left: 50%;
     
-    background-color: rgb(33, 114, 30);
+    background-color: rgb(56, 156, 53);
     border-radius: 50%;
-    /* max-width: 50%;
-    max-height: 50%; */
 }
 
 .pieceInDanger {
@@ -84,8 +82,6 @@ html{
     
     background-color: rgb(231, 20, 48);
     border-radius: 50%;
-    /* max-width: 4vh;
-    max-height: 4vh; */
 }
 
 .enPassant {
@@ -96,9 +92,6 @@ html{
     
     background-color: rgb(231, 20, 48);
     border-radius: 50%;
-    /* max-width: 4vh;
-    max-height: 4vh; */
-
 }
 
 .castle{
@@ -109,13 +102,10 @@ html{
     
     background-color: rgb(56, 219, 178);
     border-radius: 50%;
-    /* max-width: 50%;
-    max-height: 50%; */
 }
 
 
 .lastLocation {
-    /* background-color: rgb(198, 240, 194); */
     background: radial-gradient(rgb(198, 240, 194) 0%, rgb(198, 240, 194) 50%, rgb(255, 255, 255) 100%);
 }
 
