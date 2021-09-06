@@ -138,11 +138,17 @@ export default class ChessBoard {
     isCheck() {
         //occurs when 'piece in danger' is a king (black or white) (logic written in Chess.js)
 
-        //acknowledges that king is in check
+        //acknowledges that king is in check (done in King.js)
         console.log("check function is correctly called"); //for testing to see if this is referred to correctly
-        check(); // something doesn't work here
+        //check(); // something doesn't work here
+
+
+
+
 
         //only allow moves that 'protect' the king
+
+
     }
 
     isStaleMate() {

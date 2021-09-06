@@ -61,7 +61,16 @@ export class King extends Pawn {
         console.log(this.check); //checks whether the king is acknowledge to be in check (needed for castling etc.)
     }
 
-    check() {
-        this.check = true; // this is not working
+    inCheck() {
+        console.log("check is called in King.js");
+        
+        this.check = true;
+        console.log(this.check);
+    }
+
+    unCheck() {
+        //console.log("unCheck() is correctly called in King.js");
+
+        this.check = false;
     }
 }

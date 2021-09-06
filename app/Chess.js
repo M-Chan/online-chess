@@ -116,8 +116,10 @@ function updateThreatenedPositions() {
         }
         catch (error) {}
 
-        //unthreaten every square
+        //unthreaten every square and remove check
         chessBoard.getSquare(item.id).unthreaten();
+        try {chessBoard.getPiece(item.id).unCheck()}
+        catch (error) {}
     })
 
     document.getElementById("checkText").classList.add("is--hidden");
@@ -126,7 +128,6 @@ function updateThreatenedPositions() {
         //threaten the squares in line of attack
         try {
             chessBoard.getPiece(item.id).threaten(); 
-            //console.log(chessBoard.getPiece(item.id).description === "whiteKing");
         }
         catch (error) {}
     })
@@ -138,8 +139,15 @@ function updateThreatenedPositions() {
             if (((chessBoard.getPiece(item.id).description === "whiteKing") && (chessBoard.getSquare(item.id).threatenedByBlack)) || ((chessBoard.getPiece(item.id).description === "blackKing") && (chessBoard.getSquare(item.id).threatenedByWhite))) {
                 document.getElementById("checkText").classList.remove("is--hidden"); //tell the user / player that check has occured
                 document.getElementById(item.id).parentElement.classList.add("kingInCheck"); //tell the user / player which king is in check
-                chessBoard.isCheck(); //calls check function in the Chessboard.js file
-                //console.log("check")
+                
+                try {
+                    chessBoard.getPiece(item.id).inCheck(); //calls check function in the King.js file
+                    chessBoard.isCheck(); //calls check function in the Chessboard.js file
+                }
+                catch (error) {
+                    console.log("there was an error");
+                }
+                //console.log("check");
             } 
         }
         catch (error) {}
