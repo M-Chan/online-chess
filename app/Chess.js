@@ -109,15 +109,8 @@ function updateThreatenedPositions() {
     const squares = document.querySelectorAll('.piece'); //creates an array of all the squares on the chessboard
     
     squares.forEach(item => { //unthreatening every square --> no more check
-        try {
-            if ((chessBoard.getPiece(item.id).description === "whiteKing") || (chessBoard.getPiece(item.id).description === "blackKing")) {
-                document.getElementById(item.id).parentElement.classList.remove("kingInCheck")
-            }
-        }
-        catch (error) {}
-
-        //unthreaten every square and remove check
         chessBoard.getSquare(item.id).unthreaten();
+        document.getElementById(item.id).parentElement.classList.remove("kingInCheck")
         try {chessBoard.getPiece(item.id).unCheck()}
         catch (error) {}
     })
