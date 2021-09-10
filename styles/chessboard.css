@@ -123,11 +123,19 @@ html{
     z-index: 2;
 }
 
-#checkText{
+#checkText, #checkmateText, #stalemateText {
     position: relative;
 
     font-size: 10vh;
     text-align: center;
+}
+
+#checkmateText {
+    left: -50%;
+}
+
+#stalemateText{
+    left: -32%;
 }
 
 /* show king in check - for a box with red corners when the piece is in danger */
