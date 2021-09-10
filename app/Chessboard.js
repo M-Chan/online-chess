@@ -140,7 +140,8 @@ export default class ChessBoard {
 
         //acknowledges that king is in check (done in King.js)
         console.log("check function is correctly called"); //for testing to see if this is referred to correctly
-        //check(); // something doesn't work here
+
+        
 
 
 
