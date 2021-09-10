@@ -120,10 +120,16 @@ export default class ChessBoard {
 
 
     // these 3 methods need to be done later on
-    isCheckMate(colour) {
-        //end the game and declare the winner
+    isCheckMate(colour) { //end the game and declare the winner
 
-        if(colour === white) { //white wins
+        // remove check text and whose turn it is
+        document.getElementById("checkText").classList.add("is--hidden");
+        document.getElementById("turn").classList.add("is--hidden");
+
+        // show that checkmate has occured...
+        document.getElementById("checkmateText").classList.remove("is--hidden");
+
+        if(colour === "white") { //white wins
             document.getElementById("whiteWins").classList.remove("is--hidden");
         }
 
@@ -132,7 +138,7 @@ export default class ChessBoard {
         }
 
         //stop all moves from working
-
+        window.stop() // something else needs to be added
     }
 
     isCheck() {
@@ -141,9 +147,8 @@ export default class ChessBoard {
         //acknowledges that king is in check (done in King.js)
         console.log("check function is correctly called"); //for testing to see if this is referred to correctly
 
-        
-
-
+        //this.isCheckMate('white'); //use an if statement here
+        //this.isStaleMate(); // not sure about this as stalemate and check are kinda opposites
 
 
 
@@ -153,10 +158,17 @@ export default class ChessBoard {
     }
 
     isStaleMate() {
-        //end the game and declare it as a draw
+        // remove check text and whose turn it is
+        document.getElementById("checkText").classList.add("is--hidden");
+        document.getElementById("turn").classList.add("is--hidden");
+
+        //end the game and declare it as a draw showing that stalemate has occured
         document.getElementById("drawStalemate").classList.remove("is--hidden");
+        document.getElementById("stalemateText").classList.remove("is--hidden");
 
         //stop all moves from working
+        window.stop() // something else needs to be added
 
+        // need to figure out how stalemate will be called
     }
 }          
