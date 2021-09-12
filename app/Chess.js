@@ -156,7 +156,7 @@ function updateThreatenedPositions() {
         catch (error) {}
     })
 
-    if (legalMoves === 0 && !checkmate) {// staleamate
+    if (legalMoves === 0 && !checkmate) {// stalemate
         console.log("stalemate");
         chessBoard.isStaleMate(); //calls stalemate function in the Chessboard.js file
     }

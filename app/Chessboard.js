@@ -147,8 +147,7 @@ export default class ChessBoard {
         //acknowledges that king is in check (done in King.js)
         console.log("check function is correctly called"); //for testing to see if this is referred to correctly
 
-        //this.isCheckMate('white'); //use an if statement here
-        //this.isStaleMate(); // not sure about this as stalemate and check are kinda opposites
+
 
 
 

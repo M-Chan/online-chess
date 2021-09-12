@@ -77,12 +77,23 @@ export class King extends Pawn {
 
         if (this.colour === "white") { //white is in check
             console.log("white in check");
-                        
         }
 
         else { //black is in check
             console.log("black in check");
         }
+    }
+
+    testCanMove() {
+        //see if the king can move to a non-threatened square
+        this.canLegallyMove = false;
+
+        this.move();
+        console.log(this.aML)
+
+        //if one of the squares the king can move to is not threatened, this.canLegallyMove = true;
+
+        return this.canLegallyMove;
     }
 
     unCheck() {
