@@ -15,6 +15,9 @@ let whoseTurn;
 let pieceObj;
 let lastActiveSquares = [];
 
+let legalMoves = 0
+let checkmate = false;
+
 const turnElement =  document.getElementById("turn");
 
 const piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whiteKing", "blackKing", "whiteQueen", "blackQueen", "whiteBishop", "blackBishop","whiteKnight", "blackKnight"];
@@ -125,6 +128,8 @@ function updateThreatenedPositions() {
         catch (error) {}
     })
 
+    updateLegalMoves()
+
     squares.forEach(item => { //checking for check
         //console.log(chessBoard.getSquare(item.id).threatenedByBlack);
         
@@ -134,19 +139,32 @@ function updateThreatenedPositions() {
                 document.getElementById(item.id).parentElement.classList.add("kingInCheck"); //tell the user / player which king is in check
                 
                 try {
-                    chessBoard.getPiece(item.id).inCheck(); //calls check function in the King.js file
-                    chessBoard.isCheck(); //calls check function in the Chessboard.js file
+                    if (legalMoves === 0) { //checkmate
+                        checkmate = true; // declares checkmate as true and stops stalemate from showing
+                        chessBoard.isCheckMate(chessBoard.getPiece(item.id).colour); //calls checkmate function in the Chessboard.js file
+                    }
+                    else { //check
+                        chessBoard.getPiece(item.id).inCheck(); //calls check function in the King.js file
+                        chessBoard.isCheck(); //calls check function in the Chessboard.js file
+                    }
                 }
                 catch (error) {
                     console.log("there was an error");
                 }
-                //console.log("check");
             } 
         }
         catch (error) {}
     })
+
+    if (legalMoves === 0 && !checkmate) {// staleamate
+        console.log("stalemate");
+        chessBoard.isStaleMate(); //calls stalemate function in the Chessboard.js file
+    }
 }   
 
+function updateLegalMoves() {
+    //legalMoves = 30;
+}
 
 
 document.querySelectorAll('.piece').forEach(item => {item.addEventListener('click', () => {
