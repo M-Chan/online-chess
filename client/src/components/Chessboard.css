@@ -1,4 +1,4 @@
-.chessboard {
+#chessboard {
     width: 80vh;
 	height: 80vh;
     display:grid;

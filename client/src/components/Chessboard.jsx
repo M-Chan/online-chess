@@ -1,28 +1,56 @@
-import React, { useState } from 'react'
-import "./Chessboard.css"
+import React, { useRef, useState } from 'react';
+import "./Chessboard.css";
 import Box from "./Box";
+import { initialBoardState, samePosition } from '../utils/constants';
 
-const generateBoxes = () => {
-    let isDark = false;
-    const res = []
-    for (let i = 1; i <= 62; i++) {
-        res.push(<Box isDark={isDark} />);
-        isDark = !isDark;
-        if (i%8===0){
-            isDark = !isDark;
-        }
-    }
-    return res;
-};
+const VERTICAL_SIZE = 8;
+const HORIZONTAL_SIZE = 8;
 
 const Chessboard = () => {
-    const boxes = generateBoxes();
+    const chessboardRef = useRef(null);
+    const [activePiece, setActivePiece] = useState(null);
+    const [selectedPosition, setSelectedPosition] = useState(null);
+    const [pieces, setPieces] = useState(initialBoardState);
+    const board = [];
+    for (let y = VERTICAL_SIZE - 1; y >= 0; y--) {
+        for (let x = 0; x < HORIZONTAL_SIZE; x++) {
+            const isDark = (x + y + 2) % 2 === 0;
+            const piece = pieces.find(p =>
+                samePosition(p.position, {x, y})
+            )
+
+            board.push(<Box isDark={isDark} pieceType={piece ? piece.type : "empty"} />);
+        }
+    }
+
+    const handleClick = (e) => {
+        if (activePiece) {
+            movePiece(e);
+        } else {
+            selectPiece(e);
+        }
+    };
+
+    const selectPiece = (e) => {
+        const element = e.target;
+        if (!element.classList.contains("empty")) {
+            setActivePiece(element);
+            console.log(element.classList)
+        }
+    };
+    
+    const movePiece = (e) => {
+        const element = e.target;
+        setActivePiece(null);
+    };
 
     return (
-        <div className="chessboard">
-            {boxes}
-            <Box isDark={true} id="f8" pieceType="blackKing" />
-            <Box isDark={false} id="h8" pieceType="whiteKing" />
+        <div 
+            id="chessboard"
+            ref={chessboardRef}
+            onClick={(e) => handleClick(e)}
+        >
+            {board}
         </div>
     )
 }
