@@ -84,17 +84,18 @@ export class King extends Pawn {
         }
     }
 
-    testCanMove() {
-        //see if the king can move to a non-threatened square
-        this.canLegallyMove = false;
+    // testCanMove() {
+    //     //see if the king can move to a non-threatened square
+    //     this.canLegallyMove = false;
 
-        this.move();
-        console.log(this.aML)
+    //     this.move();
+    //     console.log(this.aML)
 
-        //if one of the squares the king can move to is not threatened, this.canLegallyMove = true;
+    //     //if one of the squares the king can move to is not threatened, this.canLegallyMove = true;
 
-        return this.canLegallyMove;
-    }
+    //     return this.canLegallyMove;
+    // }
+    // MOVED THE ABOVE TO PAWN FILE
 
     unCheck() {
         //console.log("unCheck() is correctly called in King.js");

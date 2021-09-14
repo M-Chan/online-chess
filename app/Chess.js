@@ -163,7 +163,21 @@ function updateThreatenedPositions() {
 }   
 
 function updateLegalMoves() {
-    //legalMoves = 30;
+    legalMoves = 0;
+
+    document.querySelectorAll('.piece').forEach(item => { 
+        // looks for legal moves
+        try {
+            chessBoard.getPiece(item.id).testCanMove(); // this is probably not needed
+            legalMoves += chessBoard.getPiece(item.id).testCanMove();
+            //console.log(chessBoard.getPiece(item.id).testCanMove()); // access returned legalMovesNo
+        }
+        catch (error) {
+            //console.log("there was an error finding legal moves");
+        }
+    })
+
+    console.log("legal moves:", legalMoves)
 }
 
 
