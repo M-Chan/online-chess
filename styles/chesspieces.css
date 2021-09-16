@@ -22,60 +22,60 @@
 
 .whiteRook {
   background-image: url(/assets/whiteRook.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .whiteKnight {
   background-image: url(/assets/whiteKnight.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .whiteBishop {
   background-image: url(/assets/whiteBishop.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .whiteQueen {
   background-image: url(/assets/whiteQueen.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .whiteKing {
   background-image: url(/assets/whiteKing.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .whitePawn {
   background-image: url(/assets/whitePawn.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .blackRook {
   background-image: url(/assets/blackRook.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .blackKnight {
   background-image: url(/assets/blackKnight.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .blackBishop {
   background-image: url(/assets/blackBishop.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .blackQueen {
   background-image: url(/assets/blackQueen.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .blackKing {
   background-image: url(/assets/blackKing.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .blackPawn {
   background-image: url(/assets/blackPawn.png);
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
