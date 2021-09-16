@@ -1,0 +1,9 @@
+#chessboard {
+    width: 80vh;
+	height: 80vh;
+    display:grid;
+    grid-template-rows: repeat(8, 10vh);
+    grid-template-columns: repeat(8, 10vh);
+
+    /*Come back to this later (maybe)*/
+}
