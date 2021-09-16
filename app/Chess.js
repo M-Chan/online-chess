@@ -1,7 +1,8 @@
 import ChessBoard from "./Chessboard.js";
 
-let chessBoard = new ChessBoard();
+const chessBoard = new ChessBoard();
 
+// all the global variables used in this program
 let activeSquare;
 let chessPiece; //for en passant it is the piece that has been moved
 let chessPiece2; //for en passant, it is the captured piece
@@ -14,7 +15,6 @@ let result;
 let whoseTurn;
 let pieceObj;
 let lastActiveSquares = [];
-
 let legalMoves = 0;
 let checkmate = false;
 
@@ -36,24 +36,21 @@ const piecesClass = [
 ];
 
 function removeAvailableSquares() {
-  availableMoveLocations.forEach((element) => {
-    document
-      .getElementById(`${element[0]}${element[1]}`)
-      .classList.remove(
-        "availableSquares",
-        "pieceInDanger",
-        "enPassant",
-        "castle"
-      );
-  });
+  // availableMoveLocations.forEach((element) => {
+  //   document
+  //     .getElementById(`${element[0]}${element[1]}`)
+  //     .classList.remove(
+  //       "availableSquares",
+  //       "pieceInDanger",
+  //       "enPassant",
+  //       "castle"
+  //     );
+  // });
 
-  // document.querySelectorAll('.availableSquares').forEach(item => {
-  //     item.classList.remove("availableSquares", "pieceInDanger", "enPassant");
-
-  // })
+  ///////////////////////////////////////////////////////////////////pick just one - don't need both!
 
   document.querySelectorAll(".availableSquares").forEach((item) => {
-    item.classList.remove("availableSquares", "pieceInDanger", "enPassant");
+    item.classList.remove("availableSquares", "pieceInDanger", "enPassant", "castle");
   });
 }
 
@@ -64,28 +61,17 @@ function checkPawnUpgrade(item, chessObj) {
   piece = chessBoard.getPiece(item.id); //find out what the piece is
 
   // check that the piece is a pawn that has reached the end of board
-  if (
-    (piece.description === "whitePawn" && piece.oI === 0) ||
-    (piece.description === "blackPawn" && piece.oI === 7)
-  ) {
+  if ((piece.description === "whitePawn" && piece.oI === 0) || (piece.description === "blackPawn" && piece.oI === 7)) {
     result = piece.upgrade(); //NOTE: result only contains the first character of the string returned
 
     //to reflect this change in the 2D array on the actual chessboard
     switch (result) {
       case "k":
-        description = chessBoard.makeNewKnight(
-          piece.oI,
-          piece.iI,
-          piece.colour
-        );
+        description = chessBoard.makeNewKnight(piece.oI, piece.iI, piece.colour);
         break;
 
       case "b":
-        description = chessBoard.makeNewBishop(
-          piece.oI,
-          piece.iI,
-          piece.colour
-        );
+        description = chessBoard.makeNewBishop(piece.oI, piece.iI, piece.colour);
         break;
 
       case "r":
@@ -107,6 +93,7 @@ function checkPawnUpgrade(item, chessObj) {
 }
 
 function updateChessPiece(item) {
+  //updates chess piece and also the chessboard object
   lastActiveSquares.unshift(activeSquare);
 
   try {
@@ -138,15 +125,15 @@ function deactivateActiveSquare() {
   removeAvailableSquares();
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function updateThreatenedPositions() {
   const squares = document.querySelectorAll(".piece"); //creates an array of all the squares on the chessboard
 
   squares.forEach((item) => {
     //unthreatening every square --> no more check
     chessBoard.getSquare(item.id).unthreaten();
-    document
-      .getElementById(item.id)
-      .parentElement.classList.remove("kingInCheck");
+    document.getElementById(item.id).parentElement.classList.remove("kingInCheck");
     try {
       chessBoard.getPiece(item.id).unCheck();
     } catch (error) {}
@@ -169,15 +156,11 @@ function updateThreatenedPositions() {
 
     try {
       if (
-        (chessBoard.getPiece(item.id).description === "whiteKing" &&
-          chessBoard.getSquare(item.id).threatenedByBlack) ||
-        (chessBoard.getPiece(item.id).description === "blackKing" &&
-          chessBoard.getSquare(item.id).threatenedByWhite)
+        (chessBoard.getPiece(item.id).description === "whiteKing" && chessBoard.getSquare(item.id).threatenedByBlack) ||
+        (chessBoard.getPiece(item.id).description === "blackKing" && chessBoard.getSquare(item.id).threatenedByWhite)
       ) {
         document.getElementById("checkText").classList.remove("is--hidden"); //tell the user / player that check has occured
-        document
-          .getElementById(item.id)
-          .parentElement.classList.add("kingInCheck"); //tell the user / player which king is in check
+        document.getElementById(item.id).parentElement.classList.add("kingInCheck"); //tell the user / player which king is in check
 
         try {
           if (legalMoves === 0) {
@@ -220,6 +203,10 @@ function updateLegalMoves() {
   console.log("legal moves:", legalMoves);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* THIS IS WHERE THE ACTUAL GAME LOGIC TAKES PLACE*/
+
 document.querySelectorAll(".piece").forEach((item) => {
   item.addEventListener("click", () => {
     //whatever is here is executed whenever a square is clicked
@@ -227,22 +214,16 @@ document.querySelectorAll(".piece").forEach((item) => {
     whoseTurn = chessBoard.whoseTurn().substring(0, 5).toLocaleLowerCase(); // is equal to either "white" or "black"
 
     //when activeSquare is defined and the other square has a piece (i.e. a capture)
-    if (
-      !item.classList.contains("empty") &&
-      item.classList.contains("availableSquares")
-    ) {
-      //console.log("capture")
-
+    if (!item.classList.contains("empty") && item.classList.contains("availableSquares")) {
       //colour of the piece we want to capture must be different to the piece we want to move
-      if (
-        chessBoard.getPiece(activeSquare.id).getColour() !==
-        chessBoard.getPiece(item.id).getColour()
-      ) {
+
+      if (chessBoard.getPiece(activeSquare.id).getColour() !== chessBoard.getPiece(item.id).getColour()) {
         chessPiece = $(item)
           .attr("class")
           .split(/\s+/)
           .filter((value) => piecesClass.includes(value))
           .toString(); //captured piece
+
         chessPiece2 = $(activeSquare)
           .attr("class")
           .split(/\s+/)
@@ -252,8 +233,8 @@ document.querySelectorAll(".piece").forEach((item) => {
 
         //reflect the capture in terms of ui and what the user / player sees
         item.classList.remove(chessPiece);
-        activeSquare.classList.remove(chessPiece2);
-        activeSquare.classList.remove("activeSquare");
+        activeSquare.classList.remove(chessPiece2, "activeSquare");
+        // activeSquare.classList.remove("activeSquare");
         activeSquare.classList.add("empty");
         item.classList.add(chessPiece2);
 
@@ -268,10 +249,9 @@ document.querySelectorAll(".piece").forEach((item) => {
       }
     }
 
-    // making the move - //if empty and active square is defined - can only move to a valid square
+    // moving to empty square - //if empty and active square is defined - can only move to a valid square
     else if (item.classList.contains("empty") && activeSquare !== undefined) {
       if (item.classList.contains("availableSquares")) {
-        //console.log("moving to empty square");
         chessPiece = $(activeSquare)
           .attr("class")
           .split(/\s+/)
@@ -279,41 +259,39 @@ document.querySelectorAll(".piece").forEach((item) => {
           .toString();
         // the jQuery code ABOVE returns an array but we need a string and hence the .toString() method is used
 
-        //reflect the move in terms of ui and what the user / player sees
+        //reflect the move in terms of UI and what the user / player sees
         item.classList.remove("empty");
-        activeSquare.classList.remove(chessPiece);
-        activeSquare.classList.remove("activeSquare");
+        activeSquare.classList.remove(chessPiece, "activeSquare");
+        // activeSquare.classList.remove("activeSquare");
         activeSquare.classList.add("empty");
         item.classList.add(chessPiece);
 
         //for en passant captures
         if (item.classList.contains("enPassant")) {
           if (chessPiece === "whitePawn") {
-            let belowActiveSquare = document.getElementById(
-              `${Number(item.id.charAt(0)) + 1}${item.id.charAt(1)}`
-            );
+            //the square below which contains the black pawn
+            const belowActiveSquare = document.getElementById(`${Number(item.id.charAt(0)) + 1}${item.id.charAt(1)}`);
+
+            //the black pawn
             chessPiece2 = $(belowActiveSquare)
               .attr("class")
               .split(/\s+/)
               .filter((value) => piecesClass.includes(value))
               .toString();
 
-            //console.log(chessPiece);
-            //console.log("2", chessPiece2);
-
             belowActiveSquare.classList.remove(chessPiece2);
             chessBoard.clearSquare(belowActiveSquare.id); //we also update the 2D array to reflect that this en-passant capture
             belowActiveSquare.classList.add("empty");
           } else {
             //must be a black piece then
-            let aboveActiveSquare = document.getElementById(
-              `${Number(item.id.charAt(0)) - 1}${item.id.charAt(1)}`
-            );
+
+            const aboveActiveSquare = document.getElementById(`${Number(item.id.charAt(0)) - 1}${item.id.charAt(1)}`);
             chessPiece2 = $(aboveActiveSquare)
               .attr("class")
               .split(/\s+/)
               .filter((value) => piecesClass.includes(value))
               .toString();
+
             aboveActiveSquare.classList.remove(chessPiece2);
             chessBoard.clearSquare(aboveActiveSquare.id); //we also update the 2D array to reflect that this en-passant capture
             aboveActiveSquare.classList.add("empty");
@@ -323,14 +301,15 @@ document.querySelectorAll(".piece").forEach((item) => {
         //for castling...
         if (item.classList.contains("castle")) {
           if (chessPiece3.castlingQueen) {
+            let rookSquareToMove;
+            let rookSquareToMoveTo;
+
             //for queen-side castling
             if (chessPiece === "whiteKing") {
               //for white player castling
-              let rookSquareToMove = document.getElementById("70");
-              let rookSquareToMoveTo = document.getElementById("73");
+              rookSquareToMove = document.getElementById("70");
+              rookSquareToMoveTo = document.getElementById("73");
               rookSquareToMove.classList.remove("whiteRook");
-              // console.log(rookSquareToMove.id);
-              // console.log(rookSquareToMove);
               rookSquareToMove.classList.add("empty");
               rookSquareToMoveTo.classList.remove("empty");
               rookSquareToMoveTo.classList.add("whiteRook");
@@ -340,8 +319,9 @@ document.querySelectorAll(".piece").forEach((item) => {
               chessBoard.makeNewRook(7, 3, "white");
             } else {
               //for black player castling
-              let rookSquareToMove = document.getElementById("00");
-              let rookSquareToMoveTo = document.getElementById("03");
+
+              rookSquareToMove = document.getElementById("00");
+              rookSquareToMoveTo = document.getElementById("03");
 
               rookSquareToMove.classList.remove("blackRook");
               rookSquareToMove.classList.add("empty");
@@ -353,13 +333,12 @@ document.querySelectorAll(".piece").forEach((item) => {
             }
           } else {
             //for king-side castling
+
             if (chessPiece === "whiteKing") {
               //for white player castling
-              let rookSquareToMove = document.getElementById("77");
-              let rookSquareToMoveTo = document.getElementById("75");
+              rookSquareToMove = document.getElementById("77");
+              rookSquareToMoveTo = document.getElementById("75");
               rookSquareToMove.classList.remove("whiteRook");
-              // console.log(rookSquareToMove.id);
-              // console.log(rookSquareToMove);
               rookSquareToMove.classList.add("empty");
               rookSquareToMoveTo.classList.remove("empty");
               rookSquareToMoveTo.classList.add("whiteRook");
@@ -369,8 +348,9 @@ document.querySelectorAll(".piece").forEach((item) => {
               chessBoard.makeNewRook(7, 5, "white");
             } else {
               //for black player castling
-              let rookSquareToMove = document.getElementById("07");
-              let rookSquareToMoveTo = document.getElementById("05");
+
+              rookSquareToMove = document.getElementById("07");
+              rookSquareToMoveTo = document.getElementById("05");
 
               rookSquareToMove.classList.remove("blackRook");
               rookSquareToMove.classList.add("empty");
@@ -381,11 +361,6 @@ document.querySelectorAll(".piece").forEach((item) => {
               chessBoard.makeNewRook(0, 5, "black");
             }
           }
-
-          //for testing...
-          // console.log(chessPiece);
-          // console.log(chessPiece2);
-          // console.log(chessPiece3);
         }
 
         removeAvailableSquares();
@@ -407,21 +382,19 @@ document.querySelectorAll(".piece").forEach((item) => {
       }
     }
 
-    //selecting the active square
+    //selecting the active square - when it hasn't been selected yet
     else if (!item.classList.contains("empty")) {
-      //not empty then make it active square
-
-      // console.log(chessBoard.getPiece(item.id).description === "whitePawn");
-      // console.log(chessBoard.getPiece(item.id));
-      // console.log(item.id);
+      // if not empty then make it active square
 
       if (chessBoard.getPiece(item.id).getColour() == whoseTurn) {
         turnElement.classList.remove("wrongTurn");
 
+        // clicking the same square twice "deactivates it"
         if (item.classList.contains("activeSquare")) {
           deactivateActiveSquare();
           return;
         } else if (activeSquare !== undefined) {
+          //stops activating multiple pieces
           deactivateActiveSquare();
         }
 
@@ -444,38 +417,22 @@ document.querySelectorAll(".piece").forEach((item) => {
             // show that en passant can occur
             if (chessPiece3.enPassantRight) {
               document
-                .getElementById(
-                  `${Number(activeSquare.id.charAt(0)) - 1}${
-                    Number(activeSquare.id.charAt(1)) + 1
-                  }`
-                )
+                .getElementById(`${Number(activeSquare.id.charAt(0)) - 1}${Number(activeSquare.id.charAt(1)) + 1}`)
                 .classList.add("enPassant");
             } else if (chessPiece3.enPassantLeft) {
               document
-                .getElementById(
-                  `${Number(activeSquare.id.charAt(0)) - 1}${
-                    Number(activeSquare.id.charAt(1)) - 1
-                  }`
-                )
+                .getElementById(`${Number(activeSquare.id.charAt(0)) - 1}${Number(activeSquare.id.charAt(1)) - 1}`)
                 .classList.add("enPassant");
             }
 
             // show that castling can occur
             else if (chessPiece3.castlingQueen) {
               document
-                .getElementById(
-                  `${Number(activeSquare.id.charAt(0))}${
-                    Number(activeSquare.id.charAt(1)) - 2
-                  }`
-                )
+                .getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) - 2}`)
                 .classList.add("castle");
             } else if (chessPiece3.castlingKing) {
               document
-                .getElementById(
-                  `${Number(activeSquare.id.charAt(0))}${
-                    Number(activeSquare.id.charAt(1)) + 2
-                  }`
-                )
+                .getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) + 2}`)
                 .classList.add("castle");
             }
           }
@@ -484,42 +441,26 @@ document.querySelectorAll(".piece").forEach((item) => {
           else {
             if (chessPiece3.enPassantRight) {
               document
-                .getElementById(
-                  `${Number(activeSquare.id.charAt(0)) + 1}${
-                    Number(activeSquare.id.charAt(1)) + 1
-                  }`
-                )
+                .getElementById(`${Number(activeSquare.id.charAt(0)) + 1}${Number(activeSquare.id.charAt(1)) + 1}`)
                 .classList.add("enPassant");
             } else if (chessPiece3.enPassantLeft) {
               document
-                .getElementById(
-                  `${Number(activeSquare.id.charAt(0)) + 1}${
-                    Number(activeSquare.id.charAt(1)) - 1
-                  }`
-                )
+                .getElementById(`${Number(activeSquare.id.charAt(0)) + 1}${Number(activeSquare.id.charAt(1)) - 1}`)
                 .classList.add("enPassant");
             } else if (chessPiece3.castlingQueen) {
               document
-                .getElementById(
-                  `${Number(activeSquare.id.charAt(0))}${
-                    Number(activeSquare.id.charAt(1)) - 2
-                  }`
-                )
+                .getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) - 2}`)
                 .classList.add("castle");
             } else if (chessPiece3.castlingKing) {
               document
-                .getElementById(
-                  `${Number(activeSquare.id.charAt(0))}${
-                    Number(activeSquare.id.charAt(1)) + 2
-                  }`
-                )
+                .getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) + 2}`)
                 .classList.add("castle");
             }
           }
           HTMLElement.classList.add("availableSquares");
         });
       } else {
-        // if the worng player is trying to move...
+        // if the wrong player is trying to move...
         turnElement.className = "wrongTurn";
       }
     }
