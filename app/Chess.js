@@ -36,7 +36,7 @@ const piecesClass = [
   "blackKnight",
 ];
 
-availableSquareDiv = document.createElement("div");
+let availableSquareDiv = document.createElement("div");
 availableSquareDiv.classList.add("availableSquares");
 
 function removeAvailableSquares() {
@@ -302,7 +302,7 @@ document.querySelectorAll(".piece").forEach((item) => {
 
     // moving to empty square - //if empty and active square is defined - can only move to a valid square
     else if (item.classList.contains("empty") && activeSquare !== undefined) {
-      if (item.classList.contains("availableSquares")) {
+      if (item.firstChild.classList.contains("availableSquares")) {
         chessPiece = getPiecefromHTMLElement(activeSquare);
 
         //reflect the move in terms of UI and what the user / player sees
@@ -432,7 +432,7 @@ document.querySelectorAll(".piece").forEach((item) => {
           console.log(chessBoard.board[1]);
 
           //marking all these locations on the chessboard with the "availableSquares class so they are marked with a green circle in them"
-          HTMLElement.classList.add("availableSquares");
+          HTMLElement.appendChild(availableSquareDiv);
         });
       } else {
         // if the wrong player is trying to move...
