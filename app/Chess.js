@@ -43,7 +43,15 @@ function removeAvailableSquares() {
   availableMoveLocations.forEach((element) => {
     document
       .getElementById(`${element[0]}${element[1]}`)
-      .classList.remove("availableSquares", "pieceInDanger", "enPassant", "castle");
+      .classList.remove("pieceInDanger", "enPassant", "castle");
+
+    try {
+      document
+      .getElementById(`${element[0]}${element[1]}`)
+      .removeChild(document
+        .getElementById(`${element[0]}${element[1]}`).firstChild);
+      }
+      catch (error) {}
   });
 }
 
@@ -277,7 +285,7 @@ document.querySelectorAll(".piece").forEach((item) => {
     whoseTurn = chessBoard.whoseTurn().substring(0, 5).toLocaleLowerCase(); // is equal to either "white" or "black"
 
     //when activeSquare is defined and the other square has a piece (i.e. a capture)
-    if (!item.classList.contains("empty") && item.classList.contains("availableSquares")) {
+    if (!item.classList.contains("empty") && item.hasChildNodes()) {
       //colour of the piece we want to capture must be different to the piece we want to move
 
       if (chessBoard.getPiece(activeSquare.id).getColour() !== chessBoard.getPiece(item.id).getColour()) {
@@ -302,7 +310,7 @@ document.querySelectorAll(".piece").forEach((item) => {
 
     // moving to empty square - //if empty and active square is defined - can only move to a valid square
     else if (item.classList.contains("empty") && activeSquare !== undefined) {
-      if (item.firstChild.classList.contains("availableSquares")) {
+      if (item.hasChildNodes()) {
         chessPiece = getPiecefromHTMLElement(activeSquare);
 
         //reflect the move in terms of UI and what the user / player sees
@@ -432,7 +440,8 @@ document.querySelectorAll(".piece").forEach((item) => {
           console.log(chessBoard.board[1]);
 
           //marking all these locations on the chessboard with the "availableSquares class so they are marked with a green circle in them"
-          HTMLElement.appendChild(availableSquareDiv);
+          // HTMLElement.classList.add("availableSquares2");
+         HTMLElement.appendChild(availableSquareDiv.cloneNode(true));
         });
       } else {
         // if the wrong player is trying to move...
