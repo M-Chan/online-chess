@@ -36,6 +36,9 @@ const piecesClass = [
   "blackKnight",
 ];
 
+availableSquareDiv = document.createElement("div");
+availableSquareDiv.classList.add("availableSquares");
+
 function removeAvailableSquares() {
   availableMoveLocations.forEach((element) => {
     document
@@ -119,6 +122,8 @@ function deactivateActiveSquare() {
 function updateThreatenedPositions() {
   const squares = document.querySelectorAll(".piece"); //creates an array of all the squares on the chessboard
 
+  //document.querySelectorAll(".kingInCheck").classList.remove("kingInCheck");
+
   squares.forEach((item) => {
     //unthreatening every square --> no more check
     chessBoard.getSquare(item.id).unthreaten();
@@ -176,6 +181,7 @@ function updateThreatenedPositions() {
 }
 
 function updateLegalMoves() {
+  //checking for pinned pieces - we can't move a piece if that results in check
   legalMoves = 0;
 
   document.querySelectorAll(".piece").forEach((item) => {
@@ -391,7 +397,7 @@ document.querySelectorAll(".piece").forEach((item) => {
     else if (!item.classList.contains("empty")) {
       // if not empty then make it active square
 
-      if (true || chessBoard.getPiece(item.id).getColour() == whoseTurn) {
+      if (chessBoard.getPiece(item.id).getColour() == whoseTurn) {
         turnElement.classList.remove("wrongTurn"); //because there is no error if trying to remove a class that's not present
 
         // clicking the same square twice "deactivates it"
@@ -422,6 +428,8 @@ document.querySelectorAll(".piece").forEach((item) => {
 
           enPassantSquares(chessPiece.colour);
           castlingSquares(chessPiece.colour);
+
+          console.log(chessBoard.board[1]);
 
           //marking all these locations on the chessboard with the "availableSquares class so they are marked with a green circle in them"
           HTMLElement.classList.add("availableSquares");

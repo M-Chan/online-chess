@@ -23,8 +23,16 @@ TingTing: fix the CSS bugs and learn a bit of socket.io and do the last rules pa
 Sai: React and Socket.io
 
 
-CSS fadein effect - works when moving to an empty square but not when capturing
-check, checkmate, stalement - left to do 
-small bug with en-passant capture 
+CSS fadein effect - works when moving to an empty square but not when capturing -- OPTIONAL
+
+small bug with en-passant capture - can only do it when the opponent's piece moves two up - straight away
+
+
 castling - when king can castle both directions then it chooses queen-side - need to fix this bug
+
+
 need to made the circles a bit better - they're really large and ugly right now
+
+
+
+check, checkmate, stalement - left to do 
