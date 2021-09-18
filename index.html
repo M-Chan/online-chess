@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/chessboard.css">
+    <link rel="stylesheet" href="./styles/chesspieces.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Online Chess!</title>
+</head>
+
+<body>
+    <h1 id="turn">White's turn</h1>
+    <div class="container">
+        <div id="chessBoard">
+            <div id="a">
+                <div class="lightBox box">
+                    <div id="00" class="blackRook piece">
+                        
+                    </div>
+                </div>
+                <div class="darkBox box">
+                    <div id="10" class="blackPawn piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="20" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="30" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="40" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="50" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="60" class="whitePawn piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="70" class="whiteRook piece"></div>
+                </div>
+            </div>
+            
+            <div id="b">
+                <div class="darkBox box">
+                    <div id="01" class="blackKnight piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="11" class="blackPawn piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="21" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="31" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="41" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="51" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="61" class="whitePawn piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="71" class="whiteKnight piece"></div>
+                </div>
+            </div>
+
+            <div id="c">
+                <div class="lightBox box">
+                    <div id="02" class="blackBishop piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="12" class="blackPawn piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="22" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="32" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="42" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="52" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="62" class="whitePawn piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="72" class="whiteBishop piece"></div>
+                </div>
+            </div>
+
+            <div id="d">
+                <div class="darkBox box">
+                    <div id="03" class="blackQueen piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="13" class="blackPawn piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="23" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="33" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="43" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="53" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="63" class="whitePawn piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="73" class="whiteQueen piece"></div>
+                </div>
+            </div>
+
+            <div id="e">
+                <div class="lightBox box">
+                    <div id="04" class="blackKing piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="14" class="blackPawn piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="24" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="34" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="44" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="54" class="piece empty "></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="64" class="whitePawn piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="74" class="whiteKing piece"></div>
+                </div>
+            </div>
+
+            <div id="f" >
+                <div class="darkBox box">
+                    <div id="05" class="blackBishop piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="15" class="blackPawn piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="25" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="35" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="45" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="55" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="65" class="whitePawn piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="75" class="whiteBishop piece"></div>
+                </div>
+            </div>
+
+            <div id="g">
+                <div class="lightBox box">
+                    <div id="06" class="blackKnight piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="16" class="blackPawn piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="26" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="36" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="46" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="56" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="66" class="whitePawn piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="76" class="whiteKnight piece"></div>
+                </div>
+            </div>
+
+            <div id="h">
+                <div class="darkBox box">
+                    <div id="07" class="blackRook piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="17" class="blackPawn piece"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="27" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="37" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="47" class="piece empty"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="57" class="piece empty"></div>
+                </div>
+                <div class="darkBox box">
+                    <div id="67" class="whitePawn piece"></div>
+                </div>
+                <div class="lightBox box">
+                    <div id="77" class="whiteRook piece"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="banner">
+        <div id="whiteWins" class="winnerBanner winnerText is--hidden">
+            <p>White Wins!</p>
+        </div>
+        <div id="blackWins" class="winnerBanner winnerText is--hidden">
+            <p>Black Wins!</p>
+        </div>
+        <div id="drawStalemate" class="winnerBanner winnerText is--hidden">
+            <p>Draw!</p>
+        </div>
+    </div>
+
+    <div id="check">
+        <div id="checkText" class="is--hidden">
+            <p>Check!</p>
+        </div>
+        <div id="checkmateText" class="is--hidden">
+            <p>Checkmate!</p>
+        </div>
+        <div id="stalemateText" class="is--hidden">
+            <p>Stalemate!</p>
+        </div>
+    </div>
+</body>
+
+<script type="module" src ="./app/Chess.js"></script>
+
+
+</html>

@@ -1,0 +1,36 @@
+a**3 and 3.5 are caused by the same error
+
+--------------------------------------------------------------------------------------------
+
+3) Pieces to be captured shrink into the circle - need to fix this bug
+
+3.5) You can only click on the circle to move the piece - should be anywhere inside the square
+
+--------------------------------------------------------------------------------------------
+
+4) Castle method for the king needs to be completed - using the threatened attribute of each square
+
+5) Right now the king can just move anywhere, further refinement needed here (can't move into check basically)
+
+6) Can't move a piece if it exposed the king to a check (pinned pieces)
+
+----------------------------------------------------------------------------------------------
+
+Alek: working on the React side of this project as well as the socket.io thingies
+
+TingTing: fix the CSS bugs and learn a bit of socket.io and do the last rules part
+
+Sai: React and Socket.io
+
+
+CSS fadein effect - works when moving to an empty square but not when capturing -- OPTIONAL
+
+small bug with en-passant capture - can only do it when the opponent's piece moves two up - straight away
+
+
+
+need to made the circles a bit better - they're really large and ugly right now
+
+castling bug again when both queen side and king side available
+
+check, checkmate, stalement - left to do 
