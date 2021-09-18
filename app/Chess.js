@@ -51,7 +51,7 @@ function removeAvailableSquares() {
       .removeChild(document
         .getElementById(`${element[0]}${element[1]}`).firstChild);
       }
-      catch (error) {}
+    catch (error) {}
   });
 }
 
@@ -89,7 +89,8 @@ function checkPawnUpgrade(item, chessObj) {
     //reflecting this change on output chessboard (what the user / player sees)
     item.classList.remove(chessObj);
     item.classList.add(description);
-  } else return; //if the piece is not a pawn then we don't want to do anything
+  }
+  else return; //if the piece is not a pawn then we don't want to do anything
 }
 
 function updateChessPiece(item) {
@@ -99,7 +100,8 @@ function updateChessPiece(item) {
   try {
     lastActiveSquares[0].classList.add("lastLocation");
     lastActiveSquares[1].classList.remove("lastLocation");
-  } catch (error) {}
+  }
+  catch (error) {}
 
   while (lastActiveSquares.length > 2) {
     lastActiveSquares.pop();
@@ -138,7 +140,8 @@ function updateThreatenedPositions() {
     document.getElementById(item.id).parentElement.classList.remove("kingInCheck");
     try {
       chessBoard.getPiece(item.id).unCheck();
-    } catch (error) {}
+    }
+    catch (error) {}
   });
 
   document.getElementById("checkText").classList.add("is--hidden");
@@ -147,7 +150,8 @@ function updateThreatenedPositions() {
     //threaten the squares in line of attack
     try {
       chessBoard.getPiece(item.id).threaten();
-    } catch (error) {}
+    }
+    catch (error) {}
   });
 
   updateLegalMoves();
@@ -157,10 +161,7 @@ function updateThreatenedPositions() {
     //console.log(chessBoard.getSquare(item.id).threatenedByBlack);
 
     try {
-      if (
-        (chessBoard.getPiece(item.id).description === "whiteKing" && chessBoard.getSquare(item.id).threatenedByBlack) ||
-        (chessBoard.getPiece(item.id).description === "blackKing" && chessBoard.getSquare(item.id).threatenedByWhite)
-      ) {
+      if ((chessBoard.getPiece(item.id).description === "whiteKing" && chessBoard.getSquare(item.id).threatenedByBlack) || (chessBoard.getPiece(item.id).description === "blackKing" && chessBoard.getSquare(item.id).threatenedByWhite)) {
         document.getElementById("checkText").classList.remove("is--hidden"); //tell the user / player that check has occured
         document.getElementById(item.id).parentElement.classList.add("kingInCheck"); //tell the user / player which king is in check
 
@@ -169,16 +170,19 @@ function updateThreatenedPositions() {
             //checkmate
             checkmate = true; // declares checkmate as true and stops stalemate from showing
             chessBoard.isCheckMate(chessBoard.getPiece(item.id).colour); //calls checkmate function in the Chessboard.js file
-          } else {
+          }
+          else {
             //check
             chessBoard.getPiece(item.id).inCheck(); //calls check function in the King.js file
             chessBoard.isCheck(); //calls check function in the Chessboard.js file
           }
-        } catch (error) {
+        }
+        catch (error) {
           console.log("there was an error");
         }
       }
-    } catch (error) {}
+    }
+    catch (error) {}
   });
 
   if (legalMoves === 0 && !checkmate) {
@@ -198,7 +202,8 @@ function updateLegalMoves() {
       chessBoard.getPiece(item.id).testCanMove(); // this is probably not needed
       legalMoves += chessBoard.getPiece(item.id).testCanMove();
       //console.log(chessBoard.getPiece(item.id).testCanMove()); // access returned legalMovesNo
-    } catch (error) {
+    }
+    catch (error) {
       //console.log("there was an error finding legal moves");
     }
   });
@@ -350,7 +355,8 @@ document.querySelectorAll(".piece").forEach((item) => {
               //update the 2D array to reflect the castling
               chessBoard.clearSquare(rookSquareToMove.id);
               chessBoard.makeNewRook(7, 3, "white");
-            } else {
+            }
+            else {
               //for black player castling
               rookSquareToMove = document.getElementById("00");
               rookSquareToMoveTo = document.getElementById("03");
@@ -359,7 +365,8 @@ document.querySelectorAll(".piece").forEach((item) => {
               chessBoard.clearSquare(rookSquareToMove.id);
               chessBoard.makeNewRook(0, 3, "black");
             }
-          } else {
+          }
+          else {
             //for king-side castling
             if (chessPiece === "whiteKing") {
               //for white player castling
@@ -370,7 +377,8 @@ document.querySelectorAll(".piece").forEach((item) => {
               //update the 2D array to reflect the castling
               chessBoard.clearSquare(rookSquareToMove.id);
               chessBoard.makeNewRook(7, 5, "white");
-            } else {
+            }
+            else {
               //for black player castling
               rookSquareToMove = document.getElementById("07");
               rookSquareToMoveTo = document.getElementById("05");

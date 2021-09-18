@@ -31,6 +31,6 @@ small bug with en-passant capture - can only do it when the opponent's piece mov
 
 need to made the circles a bit better - they're really large and ugly right now
 
-
+castling bug again when both queen side and king side available
 
 check, checkmate, stalement - left to do 
