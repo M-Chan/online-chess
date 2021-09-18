@@ -28,8 +28,6 @@ CSS fadein effect - works when moving to an empty square but not when capturing 
 small bug with en-passant capture - can only do it when the opponent's piece moves two up - straight away
 
 
-castling - when king can castle both directions then it chooses queen-side - need to fix this bug
-
 
 need to made the circles a bit better - they're really large and ugly right now
 
