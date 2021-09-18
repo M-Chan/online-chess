@@ -252,26 +252,28 @@ function enPassantSquares(colour) {
 }
 
 function castlingSquares(colour) {
-  //shows the squares that can moved to using en passant
+  //shows possible castling options
   if (colour == "white") {
-    if (chessPiece.castlingQueen) {
-      document
-        .getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) - 3}`)
-        .classList.add("castle");
-    } else if (chessPiece.castlingKing) {
-      document
-        .getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) + 2}`)
-        .classList.add("castle");
+    if (chessPiece.castlingQueen) { //Queen-side castling
+      document.getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) - 2}`).classList.add("castle");
+      if (chessPiece.castlingKing) { //Both Queen AND King side castling available
+        document.getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) + 2}`).classList.add("castle");
+      }
     }
-  } else {
-    if (chessPiece.castlingQueen) {
-      document
-        .getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) - 3}`)
-        .classList.add("castle");
-    } else if (chessPiece.castlingKing) {
-      document
-        .getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) + 2}`)
-        .classList.add("castle");
+    else if (chessPiece.castlingKing) { //King-side Castling only
+      document.getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) + 2}`).classList.add("castle");
+    }
+  }
+  
+  else {
+    if (chessPiece.castlingQueen) { //Queen-side castling for black
+      document.getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) - 2}`).classList.add("castle");
+      if (chessPiece.castlingKing) { //Both Queen AND King side castling available
+        document.getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) + 2}`).classList.add("castle");
+      }
+    }
+    else if (chessPiece.castlingKing) { //king-side castling only for black
+      document.getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1)) + 2}`).classList.add("castle");
     }
   }
 }
