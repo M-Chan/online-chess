@@ -24,22 +24,20 @@ const piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whit
                    
 const turnElement =  document.getElementById("turn");
 
-let availableSquareDiv = document.createElement("div");
-availableSquareDiv.classList.add("availableSquares");
+let childDiv = document.createElement("div");
+// availableSquareDiv.classList.add("availableSquares");
 
+let squareBox = document.querySelectorAll(".piece");
+
+squareBox.forEach(box => {
+    box.appendChild(childDiv.cloneNode(true));
+})
 
 function removeAvailableSquares() {
 
     availableMoveLocations.forEach(element => {
         document.getElementById(`${element[0]}${element[1]}`).classList.remove("pieceInDanger", "enPassant", "castle");
-
-        try {
-            document
-            .getElementById(`${element[0]}${element[1]}`)
-            .removeChild(document
-              .getElementById(`${element[0]}${element[1]}`).firstChild);
-            }
-        catch (error) {}
+        document.getElementById(`${element[0]}${element[1]}`).firstChild.classList.remove("availableSquares");
     })
 
     // document.querySelectorAll('.availableSquares').forEach(item => {
@@ -201,7 +199,7 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
     whoseTurn = chessBoard.whoseTurn().substring(0,5).toLocaleLowerCase(); // is equal to either "white" or "black"
 
     //when activeSquare is defined and the other square has a piece (i.e. a capture)
-    if (!item.classList.contains("empty") && item.hasChildNodes()) { 
+    if (!item.classList.contains("empty") && item.firstChild.classList.contains("availableSquares")) { 
         
         //console.log("capture")
 
@@ -233,7 +231,7 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
     // making the move - //if empty and active square is defined - can only move to a valid square
     else if (item.classList.contains("empty") && activeSquare !== undefined) { 
 
-        if (item.hasChildNodes()) {
+        if (item.firstChild.classList.contains("availableSquares")) {
             //console.log("moving to empty square");
             chessPiece = ($(activeSquare).attr("class").split(/\s+/)).filter(value => piecesClass.includes(value)).toString();
             // the jQuery code ABOVE returns an array but we need a string and hence the .toString() method is used 
@@ -458,7 +456,7 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
                         document.getElementById(`${Number(activeSquare.id.charAt(0))}${Number(activeSquare.id.charAt(1))+2}`).classList.add("castle");
                     }
                 }
-                HTMLElement.appendChild(availableSquareDiv.cloneNode(true));
+                HTMLElement.firstChild.classList.add("availableSquares");
             })
         }
 
