@@ -97,7 +97,16 @@ export class King extends Pawn {
         for (let i=0; i<8; i++) {
             try {
                 if ((this.chessBoard[this.oI + this.places[i][0]][this.iI + this.places[i][1]]).whichColourPiece() !== this.colour) {
-                    this.aML.push([this.oI + this.places[i][0], this.iI + this.places[i][1]]); // moving one in all directions unless block by own
+                    if (this.colour === "black") { // black king can't move into check rule...
+                        if (!(this.chessBoard[this.oI + this.places[i][0]][this.iI + this.places[i][1]]).threatenedByWhite) {
+                            this.aML.push([this.oI + this.places[i][0], this.iI + this.places[i][1]]); // moving one in all directions unless block by own
+                        }
+                    }
+                    else { // white king can't move into check rule...
+                        if (!(this.chessBoard[this.oI + this.places[i][0]][this.iI + this.places[i][1]]).threatenedByBlack) {
+                            this.aML.push([this.oI + this.places[i][0], this.iI + this.places[i][1]]); // moving one in all directions unless block by own
+                        }
+                    }
                 }
             }
             catch (error) {}
