@@ -192,7 +192,7 @@ export default class Pawn {
 
     testCanMove() { // see if the piece can move and their king won't be in check
         this.legalMovesNo = 0;
-        console.log("testCanMove() accessed in separate pieces file");
+        // console.log("testCanMove() accessed in separate pieces file");
     
         //     this.move();
         //     console.log(this.aML)
