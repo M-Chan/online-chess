@@ -15,4 +15,4 @@ CSS fadein effect - works when moving to an empty square but not when capturing 
 small bug with en-passant capture - can only do it when the opponent's piece moves two up - straight away
 
 
-check, checkmate, stalement - left to do 
+checkmate, stalement - left to do 
