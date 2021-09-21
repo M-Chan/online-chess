@@ -1,6 +1,4 @@
 
-5) Right now the king can just move anywhere, further refinement needed here (can't move into check basically)
-
 6) Can't move a piece if it exposed the king to a check (pinned pieces)
 
 ----------------------------------------------------------------------------------------------
