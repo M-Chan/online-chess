@@ -64,33 +64,13 @@ html{
     background-color: rgb(44, 231, 20);
 }
 
-/* .availableSquares{
-    position: relative;
-    transform: translate3d(-50%, -50%, 0);
-    top: 50%;
-    left: 50%;
-    
-    background-color: rgb(56, 156, 53);
-    border-radius: 50%;
-} */
-
 .availableSquares {
-    position: relative;
-    transform: translate3d(-50%, -50%, 0);
-    top: 50%;
-    left: 50%;
-  
-    width: 5vh;
-    height: 5vh;
-  
     background-image: url(/assets/green-circle.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
   
     z-index: 3;
 }
 
-/*
+
 .availableSquares, .pieceInDanger, .enPassant, .castle {
     position: relative;
     transform: translate3d(-50%, -50%, 0);
@@ -124,38 +104,6 @@ html{
 .castle {
     background-image: url(/assets/blue-green-circle.png);
 }
-*/
-
-.pieceInDanger {
-    position: relative;
-    transform: translate3d(-50%, -50%, 0);
-    top: 50%;
-    left: 50%;
-    
-    background-color: rgb(231, 20, 48);
-    border-radius: 50%;
-}
-
-.enPassant {
-    position: relative;
-    transform: translate3d(-50%, -50%, 0);
-    top: 50%;
-    left: 50%;
-    
-    background-color: rgb(231, 20, 48);
-    border-radius: 50%;
-}
-
-.castle {
-    position: relative;
-    transform: translate3d(-50%, -50%, 0);
-    top: 50%;
-    left: 50%;
-    
-    background-color: rgb(56, 219, 178);
-    border-radius: 50%;
-}
-
 
 .lastLocation {
     background: radial-gradient(rgb(198, 240, 194) 0%, rgb(198, 240, 194) 50%, rgb(255, 255, 255) 100%);
