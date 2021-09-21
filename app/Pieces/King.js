@@ -25,16 +25,35 @@ export class King extends Pawn {
     
                 //Queen-side castling
                 if ((this.chessBoard[this.oI][3].isEmpty()) && (this.chessBoard[this.oI][2].isEmpty()) && (this.chessBoard[this.oI][1].isEmpty())) { //checks if the squares in-between are empty
-                    if (((!this.chessBoard[0][3].threatenedByWhite) && (!this.chessBoard[0][2].threatenedByWhite)) || ((!this.chessBoard[7][3].threatenedByBlack) && (!this.chessBoard[7][2].threatenedByBlack))) { //checks to see if any squares the king moves over isn't threatened 
-                        if (this.chessBoard[this.oI][0].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
-                            this.aML.push([this.oI, this.iI-2]);
-                            this.castlingQueen = true;
+                    if (this.colour === "black") { // black king castling
+                        if ((!this.chessBoard[0][3].threatenedByWhite) && (!this.chessBoard[0][2].threatenedByWhite)) { //checks to see if any squares the king moves over isn't threatened 
+                            if (this.chessBoard[this.oI][0].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
+                                this.aML.push([this.oI, this.iI-2]);
+                                this.castlingQueen = true;
 
-                            if ((this.chessBoard[this.oI][5].isEmpty()) && (this.chessBoard[this.oI][6].isEmpty())) { //sees if both king-side AND queen-side castling can occur
-                                if (((!this.chessBoard[0][5].threatenedByWhite) && (!this.chessBoard[0][6].threatenedByWhite)) || ((!this.chessBoard[7][5].threatenedByBlack) && (!this.chessBoard[7][6].threatenedByBlack))) { //checks to see if any squares the king moves over isn't threatened  
-                                    if (this.chessBoard[this.oI][7].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
-                                        this.aML.push([this.oI, this.iI+2]);
-                                        this.castlingKing = true;
+                                if ((this.chessBoard[this.oI][5].isEmpty()) && (this.chessBoard[this.oI][6].isEmpty())) { //sees if both king-side AND queen-side castling can occur
+                                    if ((!this.chessBoard[0][5].threatenedByWhite) && (!this.chessBoard[0][6].threatenedByWhite)) { //checks to see if any squares the king moves over isn't threatened  
+                                        if (this.chessBoard[this.oI][7].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
+                                            this.aML.push([this.oI, this.iI+2]);
+                                            this.castlingKing = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else { //white king castling
+                        if ((!this.chessBoard[7][3].threatenedByBlack) && (!this.chessBoard[7][2].threatenedByBlack)) { //checks to see if any squares the king moves over isn't threatened 
+                            if (this.chessBoard[this.oI][0].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
+                                this.aML.push([this.oI, this.iI-2]);
+                                this.castlingQueen = true;
+
+                                if ((this.chessBoard[this.oI][5].isEmpty()) && (this.chessBoard[this.oI][6].isEmpty())) { //sees if both king-side AND queen-side castling can occur
+                                    if ((!this.chessBoard[7][5].threatenedByBlack) && (!this.chessBoard[7][6].threatenedByBlack)) { //checks to see if any squares the king moves over isn't threatened  
+                                        if (this.chessBoard[this.oI][7].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
+                                            this.aML.push([this.oI, this.iI+2]);
+                                            this.castlingKing = true;
+                                        }
                                     }
                                 }
                             }
@@ -44,10 +63,20 @@ export class King extends Pawn {
 
                 //king-side castling
                 else if ((this.chessBoard[this.oI][5].isEmpty()) && (this.chessBoard[this.oI][6].isEmpty())) { 
-                    if (((!this.chessBoard[0][5].threatenedByWhite) && (!this.chessBoard[0][6].threatenedByWhite)) || ((!this.chessBoard[7][5].threatenedByBlack) && (!this.chessBoard[7][6].threatenedByBlack))) { //checks to see if any squares the king moves over isn't threatened  
-                        if (this.chessBoard[this.oI][7].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
-                            this.aML.push([this.oI, this.iI+2]);
-                            this.castlingKing = true;
+                    if (this.colour === "black") { // black king castling
+                        if ((!this.chessBoard[0][5].threatenedByWhite) && (!this.chessBoard[0][6].threatenedByWhite)) { //checks to see if any squares the king moves over isn't threatened  
+                            if (this.chessBoard[this.oI][7].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
+                                this.aML.push([this.oI, this.iI+2]);
+                                this.castlingKing = true;
+                            }
+                        }
+                    }
+                    else { //white king castling
+                        if ((!this.chessBoard[7][5].threatenedByBlack) && (!this.chessBoard[7][6].threatenedByBlack)) { //checks to see if any squares the king moves over isn't threatened  
+                            if (this.chessBoard[this.oI][7].piece.moves === 0) { //if the rook partaking in the castling hasn't moved yet, castle
+                                this.aML.push([this.oI, this.iI+2]);
+                                this.castlingKing = true;
+                            }
                         }
                     }
                 }
@@ -60,6 +89,10 @@ export class King extends Pawn {
         catch (error) {} //gets rid of the weird 'can't read value of null' bug
 
         console.log("king side", this.chessBoard[this.oI][this.iI].piece.castlingKing, "queen side", this.chessBoard[this.oI][this.iI].piece.castlingQueen)
+
+        // console.log(this.colour)
+        // if (this.colour === "black") {console.log("black king selected")}
+        // else {console.log("white king selected")}
 
         for (let i=0; i<8; i++) {
             try {
