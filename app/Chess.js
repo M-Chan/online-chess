@@ -210,7 +210,9 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
             activeSquare.classList.remove(chessPiece2);
             activeSquare.classList.remove("activeSquare");
             activeSquare.classList.add("empty");
-            item.classList.add(chessPiece2);
+
+            setTimeout(() => {item.classList.add(chessPiece2); }, 5);
+            // item.classList.add(chessPiece2);
 
             removeAvailableSquares();
             updateChessPiece(item);
