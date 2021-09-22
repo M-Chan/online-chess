@@ -10,9 +10,6 @@ TingTing: learn a bit of socket.io and do the last rules part
 Sai: React and Socket.io
 
 
-CSS fadein effect - works when moving to an empty square but not when capturing -- OPTIONAL
-
 small bug with en-passant capture - can only do it when the opponent's piece moves two up - straight away
-
 
 checkmate, stalement - left to do 
