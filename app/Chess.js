@@ -20,8 +20,6 @@ let lastActiveSquares = [];
 let legalMoves = 0
 let checkmate = false;
 
-let delayTime;
-
 const piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whiteKing", "blackKing", "whiteQueen", "blackQueen", "whiteBishop", "blackBishop","whiteKnight", "blackKnight"];
                    
 const turnElement =  document.getElementById("turn");
@@ -115,15 +113,6 @@ function updateChessPiece(item) {
 function deactivateActiveSquare() {
     activeSquare.classList.remove("activeSquare");
     removeAvailableSquares();
-}
-
-function delay(delayTime) {
-    let initialTime = new Date().getTime();
-    for (let i = 0; i < 1000; i++) {
-        if (new Date().getTime() === (initialTime + delayTime)) {
-            while(1);
-        }
-    }
 }
 
 function updateThreatenedPositions() {
@@ -221,16 +210,16 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
             activeSquare.classList.remove("activeSquare");
             activeSquare.classList.add("empty");
 
-            // setTimeout(() => {item.classList.add(chessPiece2); }, 5);
+            setTimeout(() => {item.classList.add(chessPiece2); }, 5);
 
-            delay(50);
-            item.classList.add(chessPiece2);
+            // item.classList.add(chessPiece2);
 
             removeAvailableSquares();
             updateChessPiece(item);
 
             //check if the piece is a pawn and if it is eligible to be upgraded
-            checkPawnUpgrade(item, chessPiece2)
+            setTimeout(() => {checkPawnUpgrade(item, chessPiece2); }, 5);
+            // checkPawnUpgrade(item, chessPiece2)
 
             //after the move we don't want any piece to be active
             activeSquare = undefined;
