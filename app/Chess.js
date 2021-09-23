@@ -20,6 +20,8 @@ let lastActiveSquares = [];
 let legalMoves = 0
 let checkmate = false;
 
+let delayTime;
+
 const piecesClass =   ["whitePawn", "blackPawn", "whiteRook", "blackRook", "whiteKing", "blackKing", "whiteQueen", "blackQueen", "whiteBishop", "blackBishop","whiteKnight", "blackKnight"];
                    
 const turnElement =  document.getElementById("turn");
@@ -115,6 +117,14 @@ function deactivateActiveSquare() {
     removeAvailableSquares();
 }
 
+function delay(delayTime) {
+    let initialTime = new Date().getTime();
+    for (let i = 0; i < 1000; i++) {
+        if (new Date().getTime() === (initialTime + delayTime)) {
+            while(1);
+        }
+    }
+}
 
 function updateThreatenedPositions() {
     const squares = document.querySelectorAll('.piece'); //creates an array of all the squares on the chessboard
@@ -211,8 +221,10 @@ document.querySelectorAll('.piece').forEach(item => {item.addEventListener('clic
             activeSquare.classList.remove("activeSquare");
             activeSquare.classList.add("empty");
 
-            setTimeout(() => {item.classList.add(chessPiece2); }, 5);
-            // item.classList.add(chessPiece2);
+            // setTimeout(() => {item.classList.add(chessPiece2); }, 5);
+
+            delay(50);
+            item.classList.add(chessPiece2);
 
             removeAvailableSquares();
             updateChessPiece(item);
