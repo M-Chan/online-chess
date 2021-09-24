@@ -1,7 +1,4 @@
 
-
-5) Right now the king can just move anywhere, further refinement needed here (can't move into check basically)
-
 6) Can't move a piece if it exposed the king to a check (pinned pieces)
 
 ----------------------------------------------------------------------------------------------
@@ -11,3 +8,8 @@ Alek: working on the React side of this project as well as the socket.io thingie
 TingTing: learn a bit of socket.io and do the last rules part
 
 Sai: React and Socket.io
+
+
+small bug with en-passant capture - can only do it when the opponent's piece moves two up - straight away
+
+checkmate, stalement - left to do 

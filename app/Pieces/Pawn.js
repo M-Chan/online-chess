@@ -10,6 +10,7 @@ export default class Pawn {
         this.description = `${colour}Pawn`;
         this.enPassantRight = false;
         this.enPassantLeft = false;
+        this.legalMovesNo = 0;
     }
 
     upgrade() {
@@ -188,4 +189,18 @@ export default class Pawn {
         this.possibleCaptures("threaten").forEach(index => this.chessBoard[index[0]][index[1]].threaten(this.colour));
     }
 
+
+    testCanMove() { // see if the piece can move and their king won't be in check
+        this.legalMovesNo = 0;
+        // console.log("testCanMove() accessed in separate pieces file");
+    
+        //     this.move();
+        //     console.log(this.aML)
+    
+        //     //if one of the squares the piece can move to doesn't cause their king to be in check, this.canLegallyMove += 1;
+    
+        //this.legalMovesNo = 9;
+
+        return this.legalMovesNo;
+    }
 }

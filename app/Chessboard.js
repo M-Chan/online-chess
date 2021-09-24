@@ -129,12 +129,12 @@ export default class ChessBoard {
         // show that checkmate has occured...
         document.getElementById("checkmateText").classList.remove("is--hidden");
 
-        if(colour === "white") { //white wins
-            document.getElementById("whiteWins").classList.remove("is--hidden");
+        if(colour === "white") { //white in checkmate and black wins
+            document.getElementById("blackWins").classList.remove("is--hidden");
         }
 
-        else { //black wins
-            document.getElementById("blackWins").classList.remove("is--hidden");
+        else { //black in checkmate and white wins
+            document.getElementById("whiteWins").classList.remove("is--hidden");
         }
 
         //stop all moves from working
@@ -147,8 +147,7 @@ export default class ChessBoard {
         //acknowledges that king is in check (done in King.js)
         console.log("check function is correctly called"); //for testing to see if this is referred to correctly
 
-        //this.isCheckMate('white'); //use an if statement here
-        //this.isStaleMate(); // not sure about this as stalemate and check are kinda opposites
+
 
 
 
@@ -169,6 +168,6 @@ export default class ChessBoard {
         //stop all moves from working
         window.stop() // something else needs to be added
 
-        // need to figure out how stalemate will be called
+        // need to figure out how stalemate will be called --> legal moves = 0 and no checkmate
     }
 }          
