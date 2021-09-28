@@ -68,20 +68,18 @@ export default class Pawn {
                     this.aML.push([this.oI-1,this.iI-1]);
                     // console.log("can capture the black piece en passant");
                     this.enPassantLeft = true;
+                    this.enPassantRight = false;
                 }
-                else {
-                    this.enPassantLeft = false;
-                }
-        
-              
-                if (piece2 !== null && piece2.description === "blackPawn" && piece2.moves === 1) {
+                else if (piece2 !== null && piece2.description === "blackPawn" && piece2.moves === 1) {
                     this.aML.push([this.oI-1,this.iI+1]);
                     // console.log("can capture the black piece en passant");
                     this.enPassantRight = true;
+                    this.enPassantLeft = false;
                 }
 
                 else {
                     this.enPassantRight = false;
+                    this.enPassantLeft = false;
                 }
             }
         }
@@ -118,19 +116,18 @@ export default class Pawn {
                     this.aML.push([this.oI+1,this.iI-1]);
                     // console.log("can capture the white piece en passant");
                     this.enPassantLeft = true;
+                    this.enPassantRight = false;
                 }
-                else {
-                    this.enPassantLeft = false;
-                }
-
              
-                if (piece2 !== null && piece2.description === "whitePawn" && piece2.moves === 1) {
+                else if (piece2 !== null && piece2.description === "whitePawn" && piece2.moves === 1) {
                     this.aML.push([this.oI+1,this.iI+1]);
                     // console.log("can capture the white piece en passant");
                     this.enPassantRight = true;
+                    this.enPassantLeft = false;
                 }
                 else {
                     this.enPassantRight = false;
+                    this.enPassantLeft = false;
                 }
             }
         }
