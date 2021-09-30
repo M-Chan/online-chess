@@ -65,7 +65,7 @@ html{
 }
 
 .availableSquares {
-    background-image: url(/assets/green-circle.png);
+    background-image: url(../assets/green-circle.png);
   
     z-index: 3;
 }
@@ -89,20 +89,20 @@ html{
 }
 
 .availableSquares {
-    background-image: url(/assets/green-circle.png);
+    background-image: url(../assets/green-circle.png);
     z-index: 3;
 }
 
 .pieceInDanger {
-    background-image: url(/assets/red-circle.png);
+    background-image: url(../assets/red-circle.png);
 }
 
 .enPassant {
-    background-image: url(/assets/red-circle.png);
+    background-image: url(../assets/red-circle.png);
 }
 
 .castle {
-    background-image: url(/assets/blue-green-circle.png);
+    background-image: url(../assets/blue-green-circle.png);
 }
 
 .lastLocation {
