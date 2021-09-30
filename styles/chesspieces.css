@@ -17,8 +17,8 @@
 }
 
 .whiteRook{
-    background-image: url(/assets/whiteRook.png);
-    animation: fadeIn 2s;
+    background-image: url(../assets/whiteRook.png);
+    /* animation: fadeIn 2s; */
 }
 
 .whiteKnight{
